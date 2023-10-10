@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja de Produtos</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row" id="produtos">
+            <!-- Os produtos serão inseridos aqui pelo JavaScript -->
+        </div>
+    </div>
+
+    <!-- Tabletop.js para carregar os dados da planilha -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js"></script>
+    <!-- Bootstrap JS e Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        function init() {
+            Tabletop.init({
+                key: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTGy-7_SfKpf4b6HpIL2-f6JNugN8VPQPT_qfQb0gjoTn4qvh3Vyupbr4aVJcdmn1Sma3zlSYJQ0W_z/pubhtml',
+                callback: showInfo,
+                simpleSheet: true
+            })
+        }
+
+        function showInfo(data, tabletop) {
+            var productsContainer = document.getElementById('produtos');
+            for (var i = 0; i < data.length; i++) {
+                var productCard = `
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img class="card-img-top" src="${data[i].imagem}" alt="${data[i].produto}">
+                            <div class="card-body">
+                                <h5 class="card-title">${data[i].produto}</h5>
+                                <p class="card-text">R$ ${data[i].preço}</p>
+                            </div>
+                        </div>
+                    </div>`;
+                productsContainer.innerHTML += productCard;
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
+
+</body>
+
+</html>
