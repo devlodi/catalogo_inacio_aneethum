@@ -215,6 +215,28 @@
         var modal = document.getElementById("myModal");
         modal.style.display = "none";
     }
+        function removerDoCarrinho(index) {
+        total -= carrinho[index].preco;  // Subtrai o preço do item do total
+        carrinho.splice(index, 1);  // Remove o item do carrinho
+        atualizarCarrinho();
+    }
+
+    function atualizarCarrinho() {
+        var headerDiv = document.getElementById('header');
+        var detalhesCarrinho = document.getElementById('detalhesCarrinho');
+        var conteudoCarrinho = '<button class="btn" onclick="enviarPedido()">Mandar Pedido pelo WhatsApp</button><br>';
+        carrinho.forEach((item, index) => {
+            conteudoCarrinho += `
+                <p>
+                    ${item.produto} - R$ ${item.preco.toFixed(2)}
+                    <span onclick="removerDoCarrinho(${index})" style="cursor:pointer;">&#128465;</span>
+                </p>`;
+        });
+        conteudoCarrinho += `<p>Total: R$ ${total.toFixed(2)}</p>`;
+        detalhesCarrinho.innerHTML = conteudoCarrinho;
+        document.getElementById('contador').innerText = carrinho.length;
+    }
+
 
 
 // ... (o código para carregar os produtos da planilha) ...
