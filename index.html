@@ -73,7 +73,7 @@
 
     #contador {
         margin-left: 10px;
-        background-color: #008CBA;
+        background-color: #a80303;
         color: #fff;
         border-radius: 50%;
         padding: 5px 10px;
@@ -86,6 +86,14 @@
     #header.ativo #detalhesCarrinho {
         display: block;
     }
+ .instrucoes {
+        background-color: #e0f7fa;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        font-size: 1em;
+    }
+    
 </style>
 
     <!-- PapaParse -->
@@ -102,8 +110,11 @@
     </div>
     
     <div id="produtos">
-        <!-- Os produtos serão inseridos aqui pelo JavaScript -->
+    <div class="instrucoes">
+        <p>Bem-vindo à nossa loja online! Aqui você pode ver todos os nossos produtos disponíveis. Para adicionar um item ao seu carrinho, basta clicar no botão "Colocar no Carrinho" abaixo do produto desejado. Você pode visualizar os itens no seu carrinho e o total da sua compra clicando no botão "Carrinho" no topo da página. Quando estiver pronto para finalizar a compra, clique em "Mandar Pedido pelo WhatsApp" no carrinho para enviar o seu pedido via WhatsApp.</p>
     </div>
+    <!-- Os produtos serão inseridos aqui pelo JavaScript -->
+</div>
    <script type="text/javascript">
         var carrinho = [];
         var total = 0;
