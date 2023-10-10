@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loja de Produtos</title>
     <style>
-        body {
+          body {
             font-family: Arial, sans-serif;
             padding: 20px;
             background-color: #f9f9f9;
@@ -23,13 +23,15 @@
             border: 1px solid #ddd;
             border-radius: 8px;
             padding: 20px;
-            width: calc(33.333% - 20px);
+            width: 100%;
             box-sizing: border-box;
         }
 
         .card img {
             max-width: 100%;
             border-radius: 4px;
+            display: block;
+            margin: auto;
         }
 
         .card-title {
@@ -39,6 +41,12 @@
 
         .card-text {
             margin: 0;
+        }
+
+        @media(min-width: 768px) {
+            .card {
+                width: calc(33.333% - 20px);
+            }
         }
     </style>
     <!-- PapaParse -->
