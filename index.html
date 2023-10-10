@@ -5,24 +5,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loja de Produtos</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        #produtos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            width: calc(33.333% - 20px);
+            box-sizing: border-box;
+        }
+
+        .card img {
+            max-width: 100%;
+            border-radius: 4px;
+        }
+
+        .card-title {
+            font-size: 1.2em;
+            margin: 0 0 10px;
+        }
+
+        .card-text {
+            margin: 0;
+        }
+    </style>
 </head>
 
 <body>
 
-    <div class="container">
-        <div class="row" id="produtos">
-            <!-- Os produtos serão inseridos aqui pelo JavaScript -->
-        </div>
+    <div id="produtos">
+        <!-- Os produtos serão inseridos aqui pelo JavaScript -->
     </div>
 
     <!-- Tabletop.js para carregar os dados da planilha -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js"></script>
-    <!-- Bootstrap JS e Popper.js -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
         function init() {
@@ -37,14 +65,10 @@
             var productsContainer = document.getElementById('produtos');
             for (var i = 0; i < data.length; i++) {
                 var productCard = `
-                    <div class="col-md-4">
-                        <div class="card">
-                            <img class="card-img-top" src="${data[i].imagem}" alt="${data[i].produto}">
-                            <div class="card-body">
-                                <h5 class="card-title">${data[i].produto}</h5>
-                                <p class="card-text">R$ ${data[i].preço}</p>
-                            </div>
-                        </div>
+                    <div class="card">
+                        <img src="${data[i].imagem}" alt="${data[i].produto}">
+                        <h5 class="card-title">${data[i].produto}</h5>
+                        <p class="card-text">R$ ${data[i].preço}</p>
                     </div>`;
                 productsContainer.innerHTML += productCard;
             }
