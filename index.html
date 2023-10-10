@@ -5,125 +5,143 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loja de Produtos</title>
-    <style>
-          body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            background-color: #f9f9f9;
-        }
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background-color: #f9f9f9;
+        margin-top: 100px; /* Espaço para o cabeçalho */
+    }
 
-        #produtos {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
+    #produtos {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
 
+    .card {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .card img {
+        max-width: 100%;
+        border-radius: 4px;
+        display: block;
+        margin: auto;
+    }
+
+    .card-title {
+        font-size: 1.2em;
+        margin: 0 0 10px;
+    }
+
+    .card-text {
+        margin: 0;
+    }
+
+    @media(min-width: 768px) {
         .card {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            width: 100%;
-            box-sizing: border-box;
+            width: calc(33.333% - 20px);
         }
+    }
 
-        .card img {
-            max-width: 100%;
-            border-radius: 4px;
-            display: block;
-            margin: auto;
-        }
+    #header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        border-bottom: 1px solid #ddd;
+        padding: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
 
-        .card-title {
-            font-size: 1.2em;
-            margin: 0 0 10px;
-        }
+    .btn {
+        padding: 10px 20px;
+        background-color: #008CBA;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
 
-        .card-text {
-            margin: 0;
-        }
+    #contador {
+        margin-left: 10px;
+        background-color: #008CBA;
+        color: #fff;
+        border-radius: 50%;
+        padding: 5px 10px;
+    }
 
-        @media(min-width: 768px) {
-            .card {
-                width: calc(33.333% - 20px);
-            }
-        }
+    #detalhesCarrinho {
+        display: none;
+    }
 
-     body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            background-color: #f9f9f9;
-            margin-top: 100px; /* Espaço para o cabeçalho */
-        }
+    #header.ativo #detalhesCarrinho {
+        display: block;
+    }
+</style>
 
-        #header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: #fff;
-            border-bottom: 1px solid #ddd;
-            padding: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-        }
-
-        .btn {
-            padding: 10px 20px;
-            background-color: #008CBA;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        #contador {
-            margin-left: 10px;
-            background-color: #008CBA;
-            color: #fff;
-            border-radius: 50%;
-            padding: 5px 10px;
-        }
-        
-    </style>
     <!-- PapaParse -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 </head>
 
 <body>
 
-      <div id="header">
-        <!-- Os itens do carrinho e o total serão inseridos aqui pelo JavaScript -->
+     <div id="header">
+        <button class="btn" onclick="toggleCarrinho()">Carrinho<span id="contador">0</span></button>
+        <div id="detalhesCarrinho">
+            <!-- Os itens do carrinho e o total serão inseridos aqui pelo JavaScript -->
+        </div>
     </div>
-
+    
     <div id="produtos">
         <!-- Os produtos serão inseridos aqui pelo JavaScript -->
     </div>
-
-    <div id="carrinho">
-        <!-- Os itens do carrinho serão inseridos aqui pelo JavaScript -->
-        <button class="btn" onclick="enviarPedido()">Mandar Pedido pelo WhatsApp</button>
-    </div>
-
    <script type="text/javascript">
         var carrinho = [];
         var total = 0;
 
+        function toggleCarrinho() {
+            var headerDiv = document.getElementById('header');
+            if (headerDiv.classList.contains('ativo')) {
+                headerDiv.classList.remove('ativo');
+            } else {
+                headerDiv.classList.add('ativo');
+            }
+        }
+
+        function parsePreco(preco) {
+            return parseFloat(preco.replace(',', '.').replace('R$ ', ''));
+        }
+
         function adicionarAoCarrinho(produto, preco) {
-            preco = parseFloat(preco.replace(',', '.'));  // Converta a string de preço para um número
+            preco = parsePreco(preco);  // Converta a string de preço para um número
+            if (isNaN(preco)) {
+                console.error('Preço inválido:', preco);
+                return;
+            }
             carrinho.push({ produto: produto, preco: preco });
             total += preco;  // Adicione o preço ao total
+            document.getElementById('contador').innerText = carrinho.length;
             atualizarCarrinho();
         }
 
         function atualizarCarrinho() {
-            var headerDiv = document.getElementById('header');
-            var conteudoCarrinho = '<button class="btn" onclick="enviarPedido()">Mandar Pedido pelo WhatsApp</button><br>';
+            var detalhesCarrinhoDiv = document.getElementById('detalhesCarrinho');
+            var conteudoCarrinho = '';
             carrinho.forEach(item => {
                 conteudoCarrinho += `<p>${item.produto} - R$ ${item.preco.toFixed(2)}</p>`;
             });
             conteudoCarrinho += `<p>Total: R$ ${total.toFixed(2)}</p>`;
-            headerDiv.innerHTML = conteudoCarrinho;
+            conteudoCarrinho += '<button class="btn" onclick="enviarPedido()">Mandar Pedido pelo WhatsApp</button>';
+            detalhesCarrinhoDiv.innerHTML = conteudoCarrinho;
         }
 
         function enviarPedido() {
