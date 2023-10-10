@@ -93,7 +93,41 @@
         border-radius: 8px;
         font-size: 1em;
     }
-    
+        .modal {
+        display: none;
+        position: fixed;
+        z-index: 1001;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4);
+        padding-top: 60px;
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
 </style>
 
     <!-- PapaParse -->
@@ -115,6 +149,14 @@
     </div>
     <!-- Os produtos serão inseridos aqui pelo JavaScript -->
 </div>
+
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="fecharModal()">&times;</span>
+        <p id="descricaoProduto"></p>
+    </div>
+</div>
+    
    <script type="text/javascript">
         var carrinho = [];
         var total = 0;
@@ -162,25 +204,39 @@
             window.open(`https://wa.me/5551984424822?text=${mensagem}`);
         }
 
-        // (O código para carregar os produtos da planilha, com a adição do botão "Colocar no Carrinho")
-        Papa.parse('https://docs.google.com/spreadsheets/d/e/2PACX-1vTGy-7_SfKpf4b6HpIL2-f6JNugN8VPQPT_qfQb0gjoTn4qvh3Vyupbr4aVJcdmn1Sma3zlSYJQ0W_z/pub?output=csv', {
-            download: true,
-            header: true,
-            complete: function(results) {
-                var data = results.data;
-                var productsContainer = document.getElementById('produtos');
-                for (var i = 0; i < data.length; i++) {
-                    var productCard = `
-                        <div class="card">
-                            <img src="${data[i].IMAGEM}" alt="${data[i].PRODUTOS}">
-                            <h5 class="card-title">${data[i].PRODUTOS}</h5>
-                            <p class="card-text">R$ ${data[i].PREÇO}</p>
-                            <button class="btn" onclick="adicionarAoCarrinho('${data[i].PRODUTOS}', '${data[i].PREÇO}')">Colocar no Carrinho</button>
-                        </div>`;
-                    productsContainer.innerHTML += productCard;
-                }
+         function abrirModal(descricao) {
+        var modal = document.getElementById("myModal");
+        var descricaoProduto = document.getElementById("descricaoProduto");
+        descricaoProduto.innerText = descricao;
+        modal.style.display = "block";
+    }
+
+    function fecharModal() {
+        var modal = document.getElementById("myModal");
+        modal.style.display = "none";
+    }
+
+
+        // ... (o código para carregar os produtos da planilha) ...
+    Papa.parse('https://docs.google.com/spreadsheets/d/e/2PACX-1vTGy-7_SfKpf4b6HpIL2-f6JNugN8VPQPT_qfQb0gjoTn4qvh3Vyupbr4aVJcdmn1Sma3zlSYJQ0W_z/pub?output=csv', {
+        download: true,
+        header: true,
+        complete: function(results) {
+            var data = results.data;
+            var productsContainer = document.getElementById('produtos');
+            for (var i = 0; i < data.length; i++) {
+                var productCard = `
+                    <div class="card">
+                        <img src="${data[i].IMAGEM}" alt="${data[i].PRODUTOS}">
+                        <h5 class="card-title">${data[i].PRODUTOS}</h5>
+                        <button onclick="abrirModal('${data[i].DESCRIÇÃO}')">Mais Sobre</button>
+                        <p class="card-text">R$ ${data[i].PREÇO}</p>
+                        <button class="btn" onclick="adicionarAoCarrinho('${data[i].PRODUTOS}', '${data[i].PREÇO}')">Colocar no Carrinho</button>
+                    </div>`;
+                productsContainer.innerHTML += productCard;
             }
-        });
+        }
+    });
     </script>
 
 </body>
