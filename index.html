@@ -205,7 +205,7 @@
 
         function enviarPedido() {
             var mensagem = encodeURIComponent("Oi Inacio, quero estes produtos:\n" +
-                carrinho.map(item => `${item.produto} - R$ ${item.preco.toFixed(2)}`).join('\n') +
+                carrinho.map(item => `${item.produto} - R$ ${item.preco.toFixed(2)}`).join('\n\n') +
                 `\nTotal: R$ ${total.toFixed(2)}`);
             window.open(`https://wa.me/5551984424822?text=${mensagem}`);
         }
