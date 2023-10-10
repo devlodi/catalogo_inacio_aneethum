@@ -204,12 +204,12 @@
             window.open(`https://wa.me/5551984424822?text=${mensagem}`);
         }
 
-         function abrirModal(descricao) {
-        var modal = document.getElementById("myModal");
-        var descricaoProduto = document.getElementById("descricaoProduto");
-        descricaoProduto.innerText = descricao;
-        modal.style.display = "block";
-    }
+      function abrirModal(descricao) {
+    var modal = document.getElementById("myModal");
+    var descricaoProduto = document.getElementById("descricaoProduto");
+    descricaoProduto.innerText = decodeURIComponent(descricao);
+    modal.style.display = "block";
+}
 
     function fecharModal() {
         var modal = document.getElementById("myModal");
@@ -225,12 +225,12 @@ Papa.parse('https://docs.google.com/spreadsheets/d/e/2PACX-1vTGy-7_SfKpf4b6HpIL2
         var data = results.data;
         var productsContainer = document.getElementById('produtos');
         for (var i = 0; i < data.length; i++) {
-            var descricaoEscapada = JSON.stringify(data[i].DESCRIÇÃO);
+            var descricaoEscapada = encodeURIComponent(data[i].DESCRIÇÃO);
             var productCard = `
                 <div class="card">
                     <img src="${data[i].IMAGEM}" alt="${data[i].PRODUTOS}">
                     <h5 class="card-title">${data[i].PRODUTOS}</h5>
-                    <button onclick="abrirModal(${descricaoEscapada})">Mais Sobre</button>
+                    <button onclick="abrirModal('${descricaoEscapada}')">Mais Sobre</button>
                     <p class="card-text">R$ ${data[i].PREÇO}</p>
                     <button class="btn" onclick="adicionarAoCarrinho('${data[i].PRODUTOS}', '${data[i].PREÇO}')">Colocar no Carrinho</button>
                 </div>`;
