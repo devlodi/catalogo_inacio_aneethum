@@ -49,30 +49,14 @@
             }
         }
 
-    #carrinho {
-            position: fixed;
-            top: 0;
-            right: 0;
-            background-color: #fff;
-            border: 1px solid #ddd;
+     body {
+            font-family: Arial, sans-serif;
             padding: 20px;
-            display: none;
+            background-color: #f9f9f9;
+            margin-top: 100px; /* Espaço para o cabeçalho */
         }
 
-        #carrinho.ativo {
-            display: block;
-        }
-
-        .btn {
-            padding: 10px 20px;
-            background-color: #008CBA;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-         #header {
+        #header {
             position: fixed;
             top: 0;
             left: 0;
@@ -82,6 +66,15 @@
             padding: 10px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             z-index: 1000;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: #008CBA;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
         }
 
         #contador {
@@ -99,8 +92,8 @@
 
 <body>
 
-     <div id="header">
-        <button class="btn" onclick="toggleCarrinho()">Carrinho</button>
+      <div id="header">
+        <!-- Os itens do carrinho e o total serão inseridos aqui pelo JavaScript -->
     </div>
 
     <div id="produtos">
@@ -112,41 +105,30 @@
         <button class="btn" onclick="enviarPedido()">Mandar Pedido pelo WhatsApp</button>
     </div>
 
-       <script type="text/javascript">
+   <script type="text/javascript">
         var carrinho = [];
         var total = 0;
 
-        function toggleCarrinho() {
-            var carrinhoDiv = document.getElementById('carrinho');
-            if (carrinhoDiv.classList.contains('ativo')) {
-                carrinhoDiv.classList.remove('ativo');
-            } else {
-                carrinhoDiv.classList.add('ativo');
-                atualizarCarrinho();
-            }
-        }
-
-    function adicionarAoCarrinho(produto, preco) {
+        function adicionarAoCarrinho(produto, preco) {
             preco = parseFloat(preco.replace(',', '.'));  // Converta a string de preço para um número
             carrinho.push({ produto: produto, preco: preco });
             total += preco;  // Adicione o preço ao total
-            document.getElementById('contador').innerText = carrinho.length;  // Atualize o contador
             atualizarCarrinho();
         }
 
         function atualizarCarrinho() {
-            var carrinhoDiv = document.getElementById('carrinho');
-            var conteudoCarrinho = '';
+            var headerDiv = document.getElementById('header');
+            var conteudoCarrinho = '<button class="btn" onclick="enviarPedido()">Mandar Pedido pelo WhatsApp</button><br>';
             carrinho.forEach(item => {
-                conteudoCarrinho += `<p>${item.produto} - R$ ${item.preco}</p>`;
+                conteudoCarrinho += `<p>${item.produto} - R$ ${item.preco.toFixed(2)}</p>`;
             });
             conteudoCarrinho += `<p>Total: R$ ${total.toFixed(2)}</p>`;
-            carrinhoDiv.innerHTML = conteudoCarrinho + '<button class="btn" onclick="enviarPedido()">Mandar Pedido pelo WhatsApp</button>';
+            headerDiv.innerHTML = conteudoCarrinho;
         }
 
         function enviarPedido() {
             var mensagem = encodeURIComponent("Oi Inacio, quero estes produtos:\n" +
-                carrinho.map(item => `${item.produto} - R$ ${item.preco}`).join('\n') +
+                carrinho.map(item => `${item.produto} - R$ ${item.preco.toFixed(2)}`).join('\n') +
                 `\nTotal: R$ ${total.toFixed(2)}`);
             window.open(`https://wa.me/5551984424822?text=${mensagem}`);
         }
