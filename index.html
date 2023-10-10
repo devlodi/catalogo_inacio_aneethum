@@ -227,22 +227,27 @@
         atualizarCarrinho();
     }
 
-    function atualizarCarrinho() {
-        var headerDiv = document.getElementById('header');
-        var detalhesCarrinho = document.getElementById('detalhesCarrinho');
-        var conteudoCarrinho = '<button class="btn" onclick="enviarPedido()">Mandar Pedido pelo WhatsApp</button><br>';
-        carrinho.forEach((item, index) => {
-            conteudoCarrinho += `
-                <p>
-                    ${item.produto} - R$ ${item.preco.toFixed(2)}
-                    <span onclick="removerDoCarrinho(${index})" style="cursor:pointer;">&#128465;</span>
-                </p>`;
-        });
-        conteudoCarrinho += `<p>Total: R$ ${total.toFixed(2)}</p>`;
-        detalhesCarrinho.innerHTML = conteudoCarrinho;
-        document.getElementById('contador').innerText = carrinho.length;
-    }
-
+   function atualizarCarrinho() {
+    var detalhesCarrinho = document.getElementById('detalhesCarrinho');
+    var conteudoCarrinho = '';
+    var listaItens = '';
+    carrinho.forEach((item, index) => {
+        listaItens += `
+            <p>
+                ${item.produto} - R$ ${item.preco.toFixed(2)}
+                <span onclick="removerDoCarrinho(${index})" style="cursor:pointer;">&#128465;</span>
+            </p>`;
+    });
+    listaItens += `<p>Total: R$ ${total.toFixed(2)}</p>`;
+    conteudoCarrinho = `
+        <div>
+            ${listaItens}
+        </div>
+        <button class="btn" onclick="enviarPedido()">Mandar Pedido pelo WhatsApp</button><br>
+    `;
+    detalhesCarrinho.innerHTML = conteudoCarrinho;
+    document.getElementById('contador').innerText = carrinho.length;
+}
 
 
 // ... (o código para carregar os produtos da planilha) ...
