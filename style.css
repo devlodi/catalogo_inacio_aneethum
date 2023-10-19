@@ -168,4 +168,17 @@
     display: block;
 }
 
+.btn-clear {
+    padding: 2px 8px;  /* Padding pequeno */
+    background-color: red;  /* Cor de fundo vermelha */
+    color: white;  /* Cor do texto branca */
+    border: none;  /* Sem borda */
+    border-radius: 4px;  /* Borda arredondada */
+    cursor: pointer;  /* Cursor do tipo pointer ao passar o mouse */
+}
+
+/* Efeito de hover para o botão */
+.btn-clear:hover {
+    background-color: darkred;  /* Cor de fundo mais escura ao passar o mouse */
+}
     
