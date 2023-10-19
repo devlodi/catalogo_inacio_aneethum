@@ -151,4 +151,21 @@
     transition-duration: 0.2s; /* Transição suave */
 }
 
+.popup {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #008CBA;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    z-index: 1002;
+}
+
+.popup.show {
+    display: block;
+}
+
     
