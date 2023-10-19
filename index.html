@@ -156,7 +156,8 @@ Papa.parse('https://docs.google.com/spreadsheets/d/e/2PACX-1vTGy-7_SfKpf4b6HpIL2
     header: true,
     complete: function(results) {
         var data = results.data;
-                mensagensCarrinho = data.map(item => item.MSG_CARRINHO);  // Carregar as mensagens do carrinho
+         mensagensCarrinho = data.map(item => item.MSG_CARRINHO)
+                                 .filter(mensagem => mensagem && mensagem.trim());  // Filtrar mensagens vazias
         var productsContainer = document.getElementById('produtos');
         for (var i = 0; i < data.length; i++) {
             var descricaoEscapada = encodeURIComponent(data[i].DESCRIÇÃO);
