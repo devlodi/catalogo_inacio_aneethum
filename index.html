@@ -12,6 +12,7 @@
 
 <body>
 
+    
      <div id="header">
         <button class="btn" onclick="toggleCarrinho()">Carrinho<span id="contador">0</span></button>
         <div id="detalhesCarrinho">
@@ -32,6 +33,11 @@
         <p id="descricaoProduto"></p>
     </div>
 </div>
+
+    <div id="popup" class="popup">
+    <span class="popup-text" id="popupText"></span>
+</div>
+
     
    <script type="text/javascript">
         var carrinho = [];
@@ -60,6 +66,10 @@
             total += preco;  // Adicione o preço ao total
             document.getElementById('contador').innerText = carrinho.length;
             atualizarCarrinho();
+
+             var indexMensagemAleatoria = Math.floor(Math.random() * mensagensCarrinho.length);
+    var mensagemAleatoria = mensagensCarrinho[indexMensagemAleatoria];
+    mostrarPopup(mensagemAleatoria);
         }
 
      function atualizarCarrinho() {
@@ -126,6 +136,19 @@ function fecharModal() {
     document.getElementById('contador').innerText = carrinho.length;
 }
 
+       function mostrarPopup(mensagem) {
+    var popup = document.getElementById('popup');
+    var popupText = document.getElementById('popupText');
+    popupText.innerText = mensagem;
+    popup.classList.add('show');
+
+    // Ocultar o pop-up após 3 segundos
+    setTimeout(function() {
+        popup.classList.remove('show');
+    }, 3000);
+}
+
+
 
 // ... (o código para carregar os produtos da planilha) ...
 Papa.parse('https://docs.google.com/spreadsheets/d/e/2PACX-1vTGy-7_SfKpf4b6HpIL2-f6JNugN8VPQPT_qfQb0gjoTn4qvh3Vyupbr4aVJcdmn1Sma3zlSYJQ0W_z/pub?output=csv', {
@@ -133,6 +156,7 @@ Papa.parse('https://docs.google.com/spreadsheets/d/e/2PACX-1vTGy-7_SfKpf4b6HpIL2
     header: true,
     complete: function(results) {
         var data = results.data;
+                mensagensCarrinho = data.map(item => item.MSG_CARRINHO);  // Carregar as mensagens do carrinho
         var productsContainer = document.getElementById('produtos');
         for (var i = 0; i < data.length; i++) {
             var descricaoEscapada = encodeURIComponent(data[i].DESCRIÇÃO);
