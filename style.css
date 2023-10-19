@@ -148,7 +148,7 @@
     display: inline-block; /* Display inline-block */
     font-size: 12px; /* Tamanho da fonte */
     margin: 4px 2px; /* Margem */
-    transition-duration: 0.4s; /* Transição suave */
+    transition-duration: 0.2s; /* Transição suave */
 }
 
     
