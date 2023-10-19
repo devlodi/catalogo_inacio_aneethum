@@ -41,7 +41,12 @@
     
    <script type="text/javascript">
 
-           carregarCarrinho();
+       document.addEventListener('DOMContentLoaded', (event) => {
+    // Coloque todo o seu código JavaScript aqui dentro
+
+    carregarCarrinho();
+
+           
 
         var carrinho = [];
         var total = 0;
@@ -153,6 +158,8 @@ function carregarCarrinho() {
         carrinho = JSON.parse(carrinhoSalvo);
         total = carrinho.reduce((soma, item) => soma + item.preco, 0);
     }
+    // Chame atualizarCarrinho após carregar o carrinho do Local Storage
+    atualizarCarrinho();
 }
 
 
