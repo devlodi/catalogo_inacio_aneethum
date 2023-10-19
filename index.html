@@ -66,11 +66,11 @@
             total += preco;  // Adicione o preço ao total
             document.getElementById('contador').innerText = carrinho.length;
             atualizarCarrinho();
-
-             var indexMensagemAleatoria = Math.floor(Math.random() * mensagensCarrinho.length);
+              var indexMensagemAleatoria = Math.floor(Math.random() * mensagensCarrinho.length);
     var mensagemAleatoria = mensagensCarrinho[indexMensagemAleatoria];
     mostrarPopup(mensagemAleatoria);
         }
+var mensagensCarrinho = [];  // Array para armazenar as mensagens do carrinho
 
      function atualizarCarrinho() {
     var detalhesCarrinho = document.getElementById('detalhesCarrinho');
@@ -136,17 +136,25 @@ function fecharModal() {
     document.getElementById('contador').innerText = carrinho.length;
 }
 
-       function mostrarPopup(mensagem) {
+var timeoutId;  // Variável para armazenar o ID do temporizador
+
+function mostrarPopup(mensagem) {
+    // Cancelar o temporizador anterior, se houver
+    if (timeoutId) {
+        clearTimeout(timeoutId);
+    }
+
     var popup = document.getElementById('popup');
     var popupText = document.getElementById('popupText');
     popupText.innerText = mensagem;
     popup.classList.add('show');
 
     // Ocultar o pop-up após 3 segundos
-    setTimeout(function() {
+    timeoutId = setTimeout(function() {
         popup.classList.remove('show');
     }, 3000);
 }
+
 
 
 
