@@ -1,0 +1,138 @@
+   body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background-color: #f9f9f9;
+        margin-top: 100px; /* Espaço para o cabeçalho */
+    }
+
+    #produtos {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .card {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .card img {
+        max-width: 100%;
+        border-radius: 4px;
+        display: block;
+        margin: auto;
+    }
+
+    .card-title {
+        font-size: 1.2em;
+        margin: 0 0 10px;
+    }
+
+    .card-text {
+        margin: 0;
+    }
+
+    @media(min-width: 768px) {
+        .card {
+            width: calc(33.333% - 20px);
+        }
+    }
+
+    #header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        border-bottom: 1px solid #ddd;
+        padding: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        background-color: #008CBA;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    #contador {
+        margin-left: 10px;
+        background-color: #a80303;
+        color: #fff;
+        border-radius: 50%;
+        padding: 5px 10px;
+    }
+
+    #detalhesCarrinho {
+        display: none;
+    }
+
+    #header.ativo #detalhesCarrinho {
+        display: block;
+    }
+ .instrucoes {
+        background-color: #e0f7fa;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        font-size: 1em;
+    }
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    border-radius: 8px; /* Adicionado para bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Adicionado para sombra */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* CSS adicionado para mostrar o modal */
+.modal.show {
+    display: block;
+    opacity: 1;
+}
+
+.product-line {
+    font-size: 0.9em;
+    color: #555;
+    margin: 0 0 10px;
+}
+    
