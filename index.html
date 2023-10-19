@@ -56,20 +56,33 @@
             return parseFloat(preco.replace(',', '.').replace('R$ ', ''));
         }
 
-        function adicionarAoCarrinho(produto, preco) {
-            preco = parsePreco(preco);  // Converta a string de preço para um número
-            if (isNaN(preco)) {
-                console.error('Preço inválido:', preco);
-                return;
-            }
-            carrinho.push({ produto: produto, preco: preco });
-            total += preco;  // Adicione o preço ao total
-            document.getElementById('contador').innerText = carrinho.length;
-            atualizarCarrinho();
-              var indexMensagemAleatoria = Math.floor(Math.random() * mensagensCarrinho.length);
+function adicionarAoCarrinho(produto, preco) {
+    preco = parsePreco(preco);  // Converta a string de preço para um número
+    if (isNaN(preco)) {
+        console.error('Preço inválido:', preco);
+        return;
+    }
+    carrinho.push({ produto: produto, preco: preco });
+    total += preco;  // Adicione o preço ao total
+    document.getElementById('contador').innerText = carrinho.length;
+    atualizarCarrinho();
+    var indexMensagemAleatoria = Math.floor(Math.random() * mensagensCarrinho.length);
     var mensagemAleatoria = mensagensCarrinho[indexMensagemAleatoria];
     mostrarPopup(mensagemAleatoria);
-        }
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));  // Salve o carrinho no Local Storage
+}
+
+function removerDoCarrinho(index) {
+    total -= carrinho[index].preco;  // Subtrai o preço do item do total
+    carrinho.splice(index, 1);  // Remove o item do carrinho
+    atualizarCarrinho();
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));  // Salva o carrinho atualizado no Local Storage
+}
+
+
+       
+
+       
 var mensagensCarrinho = [];  // Array para armazenar as mensagens do carrinho
 
      function atualizarCarrinho() {
@@ -108,11 +121,6 @@ function fecharModal() {
     modal.classList.remove('show');
 }
 
-        function removerDoCarrinho(index) {
-        total -= carrinho[index].preco;  // Subtrai o preço do item do total
-        carrinho.splice(index, 1);  // Remove o item do carrinho
-        atualizarCarrinho();
-    }
 
    function atualizarCarrinho() {
     var detalhesCarrinho = document.getElementById('detalhesCarrinho');
@@ -136,6 +144,12 @@ function fecharModal() {
     document.getElementById('contador').innerText = carrinho.length;
 }
 
+
+
+
+
+
+       
 var timeoutId;  // Variável para armazenar o ID do temporizador
 
 function mostrarPopup(mensagem) {
