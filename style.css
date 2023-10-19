@@ -167,7 +167,6 @@
 .popup.show {
     display: block;
 }
-
 .btn-clear {
     padding: 2px 8px;  /* Padding pequeno */
     background-color: red;  /* Cor de fundo vermelha */
@@ -181,4 +180,4 @@
 .btn-clear:hover {
     background-color: darkred;  /* Cor de fundo mais escura ao passar o mouse */
 }
-    
+ 
