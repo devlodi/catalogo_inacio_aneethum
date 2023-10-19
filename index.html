@@ -141,7 +141,7 @@ Papa.parse('https://docs.google.com/spreadsheets/d/e/2PACX-1vTGy-7_SfKpf4b6HpIL2
         <img src="${data[i].IMAGEM}" alt="${data[i].PRODUTOS}">
         <h5 class="card-title">${data[i].PRODUTOS}</h5>
         <p class="product-line">Linha: ${data[i].LINHA}</p>
-        <button onclick="abrirModal('${encodeURIComponent(data[i].DESCRIÇÃO)}')">Mais Sobre</button>
+        <button class="btn-info" onclick="abrirModal('${encodeURIComponent(data[i].DESCRIÇÃO)}')">Mais Sobre</button>
         <p class="card-text">R$ ${data[i].PREÇO}</p>
         <button class="btn" onclick="adicionarAoCarrinho('${data[i].PRODUTOS}', '${data[i].PREÇO}')">Colocar no Carrinho</button>
     </div>`;
