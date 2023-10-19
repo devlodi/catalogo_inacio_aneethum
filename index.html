@@ -97,6 +97,12 @@ function removerDoCarrinho(index) {
     localStorage.setItem('carrinho', JSON.stringify(carrinho));  // Salva o carrinho atualizado no Local Storage
 }
 
+function zerarCarrinho() {
+    carrinho = [];  // Esvazie o array carrinho
+    total = 0;  // Zere a variável total
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));  // Atualize o carrinho no Local Storage
+    atualizarCarrinho();  // Atualize o carrinho na página
+}
 
        
 
@@ -135,7 +141,7 @@ function fecharModal() {
                 <span onclick="removerDoCarrinho(${index})" style="cursor:pointer;">&#128465;</span>
             </p>`;
     });
-    listaItens += `<p>Total: R$ ${total.toFixed(2)}</p>`;
+   listaItens += `<p>Total: R$ ${total.toFixed(2)} <button class="btn" onclick="zerarCarrinho()">Zerar Carrinho</button></p>`;
     conteudoCarrinho = `
         <div>
             ${listaItens}
