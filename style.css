@@ -137,24 +137,18 @@
 }
 
 .btn-info {
-    background-color: #008CBA; /* Cor de fundo */
+    background-color: #ed6415; /* Cor de fundo */
     color: #fff; /* Cor do texto */
-    padding: 10px 20px; /* Padding */
+    padding: 5px 5px; /* Padding */
     border: none; /* Sem borda */
     border-radius: 4px; /* Bordas arredondadas */
     cursor: pointer; /* Cursor de mão */
     text-align: center; /* Alinhamento de texto */
     text-decoration: none; /* Sem sublinhado */
     display: inline-block; /* Display inline-block */
-    font-size: 16px; /* Tamanho da fonte */
+    font-size: 12px; /* Tamanho da fonte */
     margin: 4px 2px; /* Margem */
     transition-duration: 0.4s; /* Transição suave */
-}
-
-.btn-info:hover {
-    background-color: white; /* Cor de fundo ao passar o mouse */
-    color: #008CBA; /* Cor do texto ao passar o mouse */
-    border: 2px solid #008CBA; /* Borda ao passar o mouse */
 }
 
     
