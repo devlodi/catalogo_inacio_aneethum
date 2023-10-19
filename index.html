@@ -40,6 +40,10 @@
 
     
    <script type="text/javascript">
+
+carregarCarrinho();
+
+       
         var carrinho = [];
         var total = 0;
 
@@ -144,6 +148,13 @@ function fecharModal() {
     document.getElementById('contador').innerText = carrinho.length;
 }
 
+function carregarCarrinho() {
+    var carrinhoSalvo = localStorage.getItem('carrinho');
+    if (carrinhoSalvo) {
+        carrinho = JSON.parse(carrinhoSalvo);
+        total = carrinho.reduce((soma, item) => soma + item.preco, 0);
+    }
+}
 
 
 
