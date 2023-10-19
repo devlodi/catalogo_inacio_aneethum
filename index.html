@@ -137,6 +137,13 @@
     display: block;
     opacity: 1;
 }
+
+.product-line {
+    font-size: 0.9em;
+    color: #555;
+    margin: 0 0 10px;
+}
+    
 </style>
 
     <!-- PapaParse -->
@@ -270,13 +277,14 @@ Papa.parse('https://docs.google.com/spreadsheets/d/e/2PACX-1vTGy-7_SfKpf4b6HpIL2
         for (var i = 0; i < data.length; i++) {
             var descricaoEscapada = encodeURIComponent(data[i].DESCRIÇÃO);
             var productCard = `
-                <div class="card">
-                    <img src="${data[i].IMAGEM}" alt="${data[i].PRODUTOS}">
-                    <h5 class="card-title">${data[i].PRODUTOS}</h5>
-                    <button onclick="abrirModal('${descricaoEscapada}')">Mais Sobre</button>
-                    <p class="card-text">R$ ${data[i].PREÇO}</p>
-                    <button class="btn" onclick="adicionarAoCarrinho('${data[i].PRODUTOS}', '${data[i].PREÇO}')">Colocar no Carrinho</button>
-                </div>`;
+    <div class="card">
+        <img src="${data[i].IMAGEM}" alt="${data[i].PRODUTOS}">
+        <h5 class="card-title">${data[i].PRODUTOS}</h5>
+        <p class="product-line">Linha: ${data[i].LINHA}</p>
+        <button onclick="abrirModal('${encodeURIComponent(data[i].DESCRIÇÃO)}')">Mais Sobre</button>
+        <p class="card-text">R$ ${data[i].PREÇO}</p>
+        <button class="btn" onclick="adicionarAoCarrinho('${data[i].PRODUTOS}', '${data[i].PREÇO}')">Colocar no Carrinho</button>
+    </div>`;
             productsContainer.innerHTML += productCard;
         }
     }
