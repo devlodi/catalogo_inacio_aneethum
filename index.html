@@ -141,7 +141,7 @@ function fecharModal() {
                 <span onclick="removerDoCarrinho(${index})" style="cursor:pointer;">&#128465;</span>
             </p>`;
     });
-   listaItens += `<p>Total: R$ ${total.toFixed(2)} <button class="btn" onclick="zerarCarrinho()">Zerar Carrinho</button></p>`;
+   listaItens += `<p>Total: R$ ${total.toFixed(2)} <button class="btn-clear" onclick="zerarCarrinho()">Zerar Carrinho</button></p>`;
     conteudoCarrinho = `
         <div>
             ${listaItens}
