@@ -50,19 +50,13 @@
         var carrinho = [];
         var total = 0;
 
-    var carrinho;
-    var total;
 
     function carregarCarrinho() {
         var carrinhoSalvo = localStorage.getItem('carrinho');
         if (carrinhoSalvo) {
             carrinho = JSON.parse(carrinhoSalvo);
             total = carrinho.reduce((soma, item) => soma + item.preco, 0);
-        } else {
-            // Inicializa as variáveis se não houver nada no Local Storage
-            carrinho = [];
-            total = 0;
-        }
+        } 
         // Chame atualizarCarrinho após carregar o carrinho do Local Storage
         atualizarCarrinho();
     }
