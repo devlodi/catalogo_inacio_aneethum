@@ -176,6 +176,7 @@
     cursor: pointer;  /* Cursor do tipo pointer ao passar o mouse */
 }
 
+
 /* Efeito de hover para o botão */
 .btn-clear:hover {
     background-color: darkred;  /* Cor de fundo mais escura ao passar o mouse */
