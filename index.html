@@ -92,22 +92,6 @@ function removerDoCarrinho(index) {
        
 var mensagensCarrinho = [];  // Array para armazenar as mensagens do carrinho
 
-     function atualizarCarrinho() {
-    var detalhesCarrinho = document.getElementById('detalhesCarrinho');
-    var conteudoCarrinho = '';
-    carrinho.forEach((item, index) => {
-        conteudoCarrinho += `
-            <p>
-                ${item.produto} - R$ ${item.preco.toFixed(2)}
-                <span onclick="removerDoCarrinho(${index})" style="cursor:pointer;">&#128465;</span>
-            </p>`;
-    });
-    conteudoCarrinho += `<p>Total: R$ ${total.toFixed(2)}</p>`;
-    conteudoCarrinho += '<button class="btn" onclick="enviarPedido()">Mandar Pedido pelo WhatsApp</button><br>';
-    detalhesCarrinho.innerHTML = conteudoCarrinho;
-    document.getElementById('contador').innerText = carrinho.length;
-}
-
 
         function enviarPedido() {
             var mensagem = encodeURIComponent("Oi Inacio, quero estes produtos:\n" +
