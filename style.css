@@ -186,5 +186,31 @@
 
    
 
+.btn-filtrar {
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-transform: uppercase;
+    background-size: 200% auto;
+    color: white;
+    border-radius: 10px;
+    display: block;
+    cursor: pointer;
+    font-size: 18px;
+    background: linear-gradient(45deg, #ff7e5f, #feb47b, #ff7e5f); /* 3 stops */
+    animation: gradient 6s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
 
 
