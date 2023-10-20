@@ -61,7 +61,6 @@
 
     
    <script type="text/javascript">
-var data;  // Declare data no topo do seu script, fora de qualquer função
 var carrinho;
 var total;
 
@@ -232,70 +231,7 @@ Papa.parse('https://docs.google.com/spreadsheets/d/e/2PACX-1vTGy-7_SfKpf4b6HpIL2
     }
 
 }); 
-var linhas = [];  // Array para armazenar as linhas únicas
-var filtros = {};  // Objeto para armazenar o estado dos filtros
 
-function abrirModalFiltrar() {
-    var modal = document.getElementById("modalFiltrar");
-    modal.classList.add('show');
-}
-
-function fecharModalFiltrar() {
-    var modal = document.getElementById("modalFiltrar");
-    modal.classList.remove('show');
-}
-
-// Função para atualizar as opções de filtragem
-function atualizarOpcoesFiltragem() {
-    var opcoesFiltragemDiv = document.getElementById('opcoesFiltragem');
-    opcoesFiltragemDiv.innerHTML = '';
-    linhas.forEach(linha => {
-        opcoesFiltragemDiv.innerHTML += `
-            <div>
-                <input type="checkbox" id="${linha}" ${filtros[linha] ? 'checked' : ''} onclick="toggleFiltro('${linha}')">
-                <label for="${linha}">${linha}</label>
-            </div>`;
-    });
-}
-
-// Função para toggle o filtro
-function toggleFiltro(linha) {
-    filtros[linha] = !filtros[linha];
-    filtrarProdutos();
-}
-
-       // Função para filtrar os produtos
-function filtrarProdutos() {
-    var productsContainer = document.getElementById('produtos');
-    productsContainer.innerHTML = '';  // Limpa o container de produtos
-    data.forEach(produto => {
-        if (filtros[produto.LINHA]) {  // Verifica se o filtro para esta linha está ativo
-            var productCard = `
-                <div class="card">
-                    <img src="${produto.IMAGEM}" alt="${produto.PRODUTOS}">
-                    <h5 class="card-title">${produto.PRODUTOS}</h5>
-                    <button class="btn-info" onclick="abrirModal('${encodeURIComponent(produto.DESCRICAO)}')">Mais Sobre</button>
-                    <p class="product-line">Linha: ${produto.LINHA}</p>
-                    <p class="card-text">Preço ${produto.PRECO}</p>
-                    <button class="btn" onclick="adicionarAoCarrinho('${produto.PRODUTOS}', '${produto.PRECO}')">Colocar no Carrinho</button>
-                </div>`;
-            productsContainer.innerHTML += productCard;
-        }
-    });
-}
-
-// ... Código para carregar os dados dos produtos ...
-Papa.parse('https://docs.google.com/spreadsheets/d/e/2PACX-1vTGy-7_SfKpf4b6HpIL2-f6JNugN8VPQPT_qfQb0gjoTn4qvh3Vyupbr4aVJcdmn1Sma3zlSYJQ0W_z/pub?output=csv', {
-    download: true,
-    header: true,
-    complete: function(results) {
-        var data = results.data.filter(item => item.LINHA && item.LINHA.trim());  // Filtra as linhas vazias
-        linhas = [...new Set(data.map(item => item.LINHA))];  // Obtém as linhas únicas
-        linhas.forEach(linha => filtros[linha] = true);  // Inicializa todos os filtros como true
-        atualizarOpcoesFiltragem();
-        filtrarProdutos();  // Filtra os produtos inicialmente
-    }
-});
 
        
     </script>
