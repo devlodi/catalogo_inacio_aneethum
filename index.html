@@ -61,7 +61,7 @@
 
     
    <script type="text/javascript">
-
+var data;  // Declare data no topo do seu script, fora de qualquer função
 var carrinho;
 var total;
 
@@ -231,8 +231,7 @@ Papa.parse('https://docs.google.com/spreadsheets/d/e/2PACX-1vTGy-7_SfKpf4b6HpIL2
         }
     }
 
-});
-var data; 
+}); 
 var linhas = [];  // Array para armazenar as linhas únicas
 var filtros = {};  // Objeto para armazenar o estado dos filtros
 
@@ -290,14 +289,13 @@ Papa.parse('https://docs.google.com/spreadsheets/d/e/2PACX-1vTGy-7_SfKpf4b6HpIL2
     download: true,
     header: true,
     complete: function(results) {
-        var data = results.data;
+        data = results.data;  // Atribua o valor a data aqui, mas não redeclare com var
         linhas = [...new Set(data.map(item => item.LINHA))];  // Obtém as linhas únicas
         linhas.forEach(linha => filtros[linha] = true);  // Inicializa todos os filtros como true
         atualizarOpcoesFiltragem();
         filtrarProdutos();  // Filtra os produtos inicialmente
     }
 });
-
 
        
     </script>
