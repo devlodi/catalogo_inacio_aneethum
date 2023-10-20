@@ -15,6 +15,7 @@
     
      <div id="header">
         <button class="btn" onclick="toggleCarrinho()">Carrinho<span id="contador">0</span></button>
+        <button class="btn" onclick="abrirModalDúvidas()">Dúvidas</button>
         <div id="detalhesCarrinho">
             <!-- Os itens do carrinho e o total serão inseridos aqui pelo JavaScript -->
         </div>
@@ -22,7 +23,7 @@
     
     <div id="produtos">
     <div class="instrucoes">
-        <p>Bem-vindo ao catalogo do Inacio! Aqui você pode ver todos os nossos produtos disponíveis. Para adicionar um item ao seu carrinho, basta clicar no botão "Colocar no Carrinho" abaixo do produto desejado. Você pode visualizar os itens no seu carrinho e o total da sua compra clicando no botão "Carrinho" no topo da página. Quando estiver pronto para finalizar a compra, clique em "Mandar Pedido pelo WhatsApp" no carrinho para enviar o seu pedido via WhatsApp.</p>
+        <p>Bem-vindo ao catalogo do Inacio!</p>
     </div>
     <!-- Os produtos serão inseridos aqui pelo JavaScript -->
 </div>
@@ -36,6 +37,13 @@
 
     <div id="popup" class="popup">
     <span class="popup-text" id="popupText"></span>
+</div>
+
+    <div id="modalDúvidas" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="fecharModalDúvidas()">&times;</span>
+        <p>Aqui você pode ver todos os nossos produtos disponíveis. Para adicionar um item ao seu carrinho, basta clicar no botão "Colocar no Carrinho" abaixo do produto desejado. Você pode visualizar os itens no seu carrinho e o total da sua compra clicando no botão "Carrinho" no topo da página. Quando estiver pronto para finalizar a compra, clique em "Mandar Pedido pelo WhatsApp" no carrinho para enviar o seu pedido via WhatsApp.</p>
+    </div>
 </div>
 
     
@@ -129,6 +137,17 @@ function fecharModal() {
     modal.classList.remove('show');
 }
 
+function abrirModalDúvidas() {
+    var modal = document.getElementById("modalDúvidas");
+    modal.classList.add('show');
+}
+
+function fecharModalDúvidas() {
+    var modal = document.getElementById("modalDúvidas");
+    modal.classList.remove('show');
+}
+
+       
 
    function atualizarCarrinho() {
     var detalhesCarrinho = document.getElementById('detalhesCarrinho');
