@@ -256,18 +256,36 @@ function obterLinhasUnicas() {
     return linhas;
 }
 
-       function atualizarOpcoesFiltragem() {
+var checkboxes = [];  // Variável global para armazenar os checkboxes
+
+function atualizarOpcoesFiltragem() {
     var linhas = obterLinhasUnicas();
     var opcoesFiltragemDiv = document.getElementById('opcoesFiltragem');
     opcoesFiltragemDiv.innerHTML = '';
     linhas.forEach(linha => {
         opcoesFiltragemDiv.innerHTML += `
             <div>
-                <input type="checkbox" id="${linha}" checked onclick="toggleFiltro('${linha}')">
+                <input type="checkbox" id="${linha}" checked>
                 <label for="${linha}">${linha}</label>
             </div>`;
     });
+    checkboxes = Array.from(document.querySelectorAll('#opcoesFiltragem input[type="checkbox"]'));  // Armazenar os checkboxes
 }
+
+       function aplicarFiltro() {
+    var linhasSelecionadas = checkboxes.filter(checkbox => checkbox.checked).map(checkbox => checkbox.id);
+    var cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+        var linhaProduto = card.querySelector('.product-line').textContent.replace('Linha: ', '');
+        if (linhasSelecionadas.includes(linhaProduto)) {
+            card.style.display = 'block';  // Mostrar o card se a linha estiver selecionada
+        } else {
+            card.style.display = 'none';  // Esconder o card se a linha não estiver selecionada
+        }
+    });
+    fecharModalFiltrar();  // Fechar o modal após aplicar o filtro
+}
+
 
        // Suponha que esta função seja chamada após os produtos serem renderizados
 function produtosCarregados() {
