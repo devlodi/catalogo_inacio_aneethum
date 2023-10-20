@@ -46,6 +46,18 @@
     </div>
 </div>
 
+    <button class="btn" onclick="abrirModalFiltrar()">Filtrar Linhas</button>
+
+<!-- Modal para Filtragem de Linhas -->
+<div id="modalFiltrar" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="fecharModalFiltrar()">&times;</span>
+        <div id="opcoesFiltragem">
+            <!-- As opções de filtragem serão inseridas aqui pelo JavaScript -->
+        </div>
+    </div>
+</div>
+
     
    <script type="text/javascript">
 
@@ -225,6 +237,50 @@ Papa.parse('https://docs.google.com/spreadsheets/d/e/2PACX-1vTGy-7_SfKpf4b6HpIL2
     }
 
 });
+
+function obterLinhasUnicas() {
+    var elementosLinhas = document.querySelectorAll('.product-line');
+    var linhas = [];
+    elementosLinhas.forEach(elemento => {
+        var linha = elemento.textContent.replace('Linha: ', '');
+        if (!linhas.includes(linha) && linha.trim() !== '') {
+            linhas.push(linha);
+        }
+    });
+    return linhas;
+}
+
+       function atualizarOpcoesFiltragem() {
+    var linhas = obterLinhasUnicas();
+    var opcoesFiltragemDiv = document.getElementById('opcoesFiltragem');
+    opcoesFiltragemDiv.innerHTML = '';
+    linhas.forEach(linha => {
+        opcoesFiltragemDiv.innerHTML += `
+            <div>
+                <input type="checkbox" id="${linha}" checked onclick="toggleFiltro('${linha}')">
+                <label for="${linha}">${linha}</label>
+            </div>`;
+    });
+}
+
+       // Suponha que esta função seja chamada após os produtos serem renderizados
+function produtosCarregados() {
+    atualizarOpcoesFiltragem();
+}
+
+       function abrirModalFiltrar() {
+    var modal = document.getElementById("modalFiltrar");
+    modal.classList.add('show');
+}
+
+function fecharModalFiltrar() {
+    var modal = document.getElementById("modalFiltrar");
+    modal.classList.remove('show');
+}
+
+
+
+       
     </script>
 
 </body>
