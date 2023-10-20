@@ -16,6 +16,7 @@
      <div id="header">
         <button class="btn" onclick="toggleCarrinho()">Carrinho<span id="contador">0</span></button>
          <button class="btn" onclick="abrirModalDúvidas()">Dúvidas ?</button>
+         <button class="btn" onclick="abrirModalFiltrar()">Filtrar Linhas</button>
         <div id="detalhesCarrinho">
             <!-- Os itens do carrinho e o total serão inseridos aqui pelo JavaScript -->
         </div>
@@ -42,10 +43,21 @@
     </div>
 </div>
 
+<div id="modalFiltrar" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="fecharModalFiltrar()">&times;</span>
+        <div id="opcoesFiltragem">
+            <!-- As opções de filtragem serão inseridas aqui pelo JavaScript -->
+        </div>
+    </div>
+</div>
+
+    
 
     <div id="popup" class="popup">
     <span class="popup-text" id="popupText"></span>
 </div>
+    
 
     
    <script type="text/javascript">
@@ -173,13 +185,6 @@ function fecharModalDúvidas() {
     detalhesCarrinho.innerHTML = conteudoCarrinho;
     document.getElementById('contador').innerText = carrinho.length;
 }
-
-
-
-
-
-
-
        
 var timeoutId;  // Variável para armazenar o ID do temporizador
 
@@ -227,6 +232,63 @@ Papa.parse('https://docs.google.com/spreadsheets/d/e/2PACX-1vTGy-7_SfKpf4b6HpIL2
     }
 
 });
+
+var linhas = [];  // Array para armazenar as linhas únicas
+var filtros = {};  // Objeto para armazenar o estado dos filtros
+
+function abrirModalFiltrar() {
+    var modal = document.getElementById("modalFiltrar");
+    modal.classList.add('show');
+}
+
+function fecharModalFiltrar() {
+    var modal = document.getElementById("modalFiltrar");
+    modal.classList.remove('show');
+}
+
+// Função para atualizar as opções de filtragem
+function atualizarOpcoesFiltragem() {
+    var opcoesFiltragemDiv = document.getElementById('opcoesFiltragem');
+    opcoesFiltragemDiv.innerHTML = '';
+    linhas.forEach(linha => {
+        opcoesFiltragemDiv.innerHTML += `
+            <div>
+                <input type="checkbox" id="${linha}" ${filtros[linha] ? 'checked' : ''} onclick="toggleFiltro('${linha}')">
+                <label for="${linha}">${linha}</label>
+            </div>`;
+    });
+}
+
+// Função para toggle o filtro
+function toggleFiltro(linha) {
+    filtros[linha] = !filtros[linha];
+    filtrarProdutos();
+}
+
+       // Função para filtrar os produtos
+function filtrarProdutos() {
+    var productsContainer = document.getElementById('produtos');
+    productsContainer.innerHTML = '';  // Limpa o container de produtos
+    data.forEach(produto => {
+        if (filtros[produto.LINHA]) {  // Verifica se o filtro para esta linha está ativo
+            var productCard = `
+                <div class="card">
+                    <img src="${produto.IMAGEM}" alt="${produto.PRODUTOS}">
+                    <h5 class="card-title">${produto.PRODUTOS}</h5>
+                    <button class="btn-info" onclick="abrirModal('${encodeURIComponent(produto.DESCRICAO)}')">Mais Sobre</button>
+                    <p class="product-line">Linha: ${produto.LINHA}</p>
+                    <p class="card-text">Preço ${produto.PRECO}</p>
+                    <button class="btn" onclick="adicionarAoCarrinho('${produto.PRODUTOS}', '${produto.PRECO}')">Colocar no Carrinho</button>
+                </div>`;
+            productsContainer.innerHTML += productCard;
+        }
+    });
+}
+
+
+
+
+       
     </script>
 
 </body>
