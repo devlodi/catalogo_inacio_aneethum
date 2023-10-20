@@ -8,30 +8,12 @@
 <link rel="stylesheet" href="style.css">
     <!-- PapaParse -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/lax.js@latest/lib/lax.min.js"></script>
+      
 
 </head>
  
 <body>
-    <script>
-    window.onload = function() {
-        lax.init();
-
-        // Adicione um driver que mapeia a rolagem da página para um valor de 0 a 1
-        lax.addDriver('scrollY', function() {
-            return window.scrollY / (document.body.scrollHeight - window.innerHeight);
-        });
-
-        // Adicione uma animação ao botão que muda o gradiente com base na rolagem
-        lax.addElements('.btn-filtrar', {
-            scrollY: {
-                background: [
-                    ['linear-gradient(45deg, #ff0000, #0000ff)', 'linear-gradient(45deg, #00ff00, #ff00ff)']
-                ]
-            }
-        });
-    }
-</script>
+ 
 
 
     
