@@ -186,29 +186,32 @@
 
    
 
-        .btn-filtrar {
-            border: none;
-            padding: 10px 20px;
-            text-align: center;
-            text-transform: uppercase;
-            transition: 0.5s;
-            background-size: 200% auto;
-            color: white;
-            border-radius: 10px;
-            display: block;
-            background-image: linear-gradient(to right, #ff7e5f, #feb47b);
-            animation: gradient 5s ease infinite; /* 5s is the duration of the animation, you can adjust it */
-            cursor: pointer;
-            font-size: 18px;
-        }
-     @keyframes gradient {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
+    @keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.btn-filtrar {
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    border-radius: 10px;
+    display: block;
+    background-image: linear-gradient(45deg, #ff7e5f, #feb47b, #ff7e5f);
+    background-size: 400% 400%;
+    animation: gradient 5s ease infinite; /* 5s é a duração da animação, você pode ajustar */
+    cursor: pointer;
+    font-size: 18px;
+}
+
