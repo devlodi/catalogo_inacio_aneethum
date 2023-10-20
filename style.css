@@ -184,17 +184,7 @@
     background-color: darkred;  /* Cor de fundo mais escura ao passar o mouse */
 }
 
-        @keyframes gradient {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
+   
 
         .btn-filtrar {
             border: none;
@@ -211,4 +201,14 @@
             cursor: pointer;
             font-size: 18px;
         }
-
+     @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
