@@ -18,6 +18,7 @@
         padding: 20px;
         width: 100%;
         box-sizing: border-box;
+       box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Adicionado para sombra */
     }
 
     .card img {
@@ -84,6 +85,7 @@
         margin-bottom: 20px;
         border-radius: 8px;
         font-size: 1em;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Adicionado para sombra */
     }
 .modal {
     display: none;
@@ -181,4 +183,32 @@
 .btn-clear:hover {
     background-color: darkred;  /* Cor de fundo mais escura ao passar o mouse */
 }
- 
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .btn-filtrar {
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-transform: uppercase;
+            transition: 0.5s;
+            background-size: 200% auto;
+            color: white;
+            border-radius: 10px;
+            display: block;
+            background-image: linear-gradient(to right, #ff7e5f, #feb47b);
+            animation: gradient 5s ease infinite; /* 5s is the duration of the animation, you can adjust it */
+            cursor: pointer;
+            font-size: 18px;
+        }
+
