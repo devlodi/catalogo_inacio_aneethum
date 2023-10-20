@@ -289,7 +289,7 @@ Papa.parse('https://docs.google.com/spreadsheets/d/e/2PACX-1vTGy-7_SfKpf4b6HpIL2
     download: true,
     header: true,
     complete: function(results) {
-        data = results.data;  // Atribua o valor a data aqui, mas não redeclare com var
+        var data = results.data.filter(item => item.LINHA && item.LINHA.trim());  // Filtra as linhas vazias
         linhas = [...new Set(data.map(item => item.LINHA))];  // Obtém as linhas únicas
         linhas.forEach(linha => filtros[linha] = true);  // Inicializa todos os filtros como true
         atualizarOpcoesFiltragem();
