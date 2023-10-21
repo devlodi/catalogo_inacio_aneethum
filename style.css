@@ -223,9 +223,10 @@
     border-radius: 5px;  /* Bordas arredondadas */
 }
 
-.nome-linha {
-    /* Adicione estilos específicos para o nome da linha aqui, se necessário */
+.nome-linha, .saiba-mais {
+    display: block;
 }
+
 
 .saiba-mais {
     cursor: pointer;
