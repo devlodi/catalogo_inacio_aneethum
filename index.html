@@ -321,18 +321,18 @@ function atualizarOpcoesFiltragem() {
 
 function aplicarFiltro() {
     var linhasSelecionadas = checkboxes.filter(checkbox => checkbox.checked).map(checkbox => checkbox.id);
-    console.log("Linhas Selecionadas: ", linhasSelecionadas);  // Log para depuração
     var cards = document.querySelectorAll('.card');
     cards.forEach(card => {
-        var linhaProduto = card.querySelector('.product-line').textContent.replace('Linha: ', '').trim();  // Adicionado trim para remover espaços em branco
-        console.log("Linha do Produto: ", linhaProduto);  // Log para depuração
+        var linhaProduto = card.querySelector('.product-line').textContent.replace('Linha: ', '');
         if (linhasSelecionadas.includes(linhaProduto)) {
-            card.style.display = 'block';
+            card.style.display = 'block';  // Mostrar o card se a linha estiver selecionada
+            console.log(`Mostrando card da linha: ${linhaProduto}`);
         } else {
-            card.style.display = 'none';
+            card.style.display = 'none';  // Esconder o card se a linha não estiver selecionada
+            console.log(`Ocultando card da linha: ${linhaProduto}`);
         }
     });
-    fecharModalFiltrar();
+    fecharModalFiltrar();  // Fechar o modal após aplicar o filtro
 }
 
 
