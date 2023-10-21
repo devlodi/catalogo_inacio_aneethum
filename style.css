@@ -197,8 +197,8 @@
     display: block;
     cursor: pointer;
     font-size: 18px;
-    background-image: linear-gradient(45deg, #ff0000, #00ff00, #0000ff, #ff0000);
-    animation: gradient 6s ease infinite;
+    background-image: linear-gradient(45deg, #FF0000, #FF7F00, #FFFF00, #7FFF00, #00FF00, #00FF7F, #00FFFF, #007FFF, #0000FF, #7F00FF, #FF00FF, #FF007F);
+    animation: gradient 4s ease infinite;
 }
 
 @keyframes gradient {
