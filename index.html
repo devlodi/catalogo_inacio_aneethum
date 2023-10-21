@@ -263,7 +263,7 @@ Papa.parse('https://docs.google.com/spreadsheets/d/e/2PACX-1vTGy-7_SfKpf4b6HpIL2
             // Verificar se é um novo grupo de linha e, em caso afirmativo, adicionar um cabeçalho
             if (i === 0 || data[i].LINHA !== data[i - 1].LINHA) {
                 productsContainer.innerHTML += `
-                    <div class="linha-separadora">
+                    <div class="linha-separadora" id="header-${linha}">
                         LINHA ${linha}
                         <span class="saiba-mais" onclick="abrirModalInfoLinha('${linha}')">Saiba mais</span>
                     </div>`;
@@ -322,19 +322,30 @@ function atualizarOpcoesFiltragem() {
 function aplicarFiltro() {
     var linhasSelecionadas = checkboxes.filter(checkbox => checkbox.checked).map(checkbox => checkbox.id);
     var cards = document.querySelectorAll('.card');
+    var headers = document.querySelectorAll('.linha-separadora');
+    
+    // Mostrar/Esconder cards
     cards.forEach(card => {
         var linhaProduto = card.querySelector('.product-line').textContent.replace('Linha: ', '');
         if (linhasSelecionadas.includes(linhaProduto)) {
-            card.style.display = 'block';  // Mostrar o card se a linha estiver selecionada
-            console.log(`Mostrando card da linha: ${linhaProduto}`);
+            card.style.display = 'block';
         } else {
-            card.style.display = 'none';  // Esconder o card se a linha não estiver selecionada
-            console.log(`Ocultando card da linha: ${linhaProduto}`);
+            card.style.display = 'none';
         }
     });
-    fecharModalFiltrar();  // Fechar o modal após aplicar o filtro
-}
 
+    // Mostrar/Esconder cabeçalhos de linha
+    headers.forEach(header => {
+        var id = header.id.replace('header-', '');
+        if (linhasSelecionadas.includes(id)) {
+            header.style.display = 'block';
+        } else {
+            header.style.display = 'none';
+        }
+    });
+
+    fecharModalFiltrar();
+}
 
 
        // Suponha que esta função seja chamada após os produtos serem renderizados
