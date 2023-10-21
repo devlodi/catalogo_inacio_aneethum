@@ -319,19 +319,22 @@ function atualizarOpcoesFiltragem() {
     checkboxes = Array.from(document.querySelectorAll('#opcoesFiltragem input[type="checkbox"]'));  // Armazenar os checkboxes
 }
 
-       function aplicarFiltro() {
+function aplicarFiltro() {
     var linhasSelecionadas = checkboxes.filter(checkbox => checkbox.checked).map(checkbox => checkbox.id);
+    console.log("Linhas Selecionadas: ", linhasSelecionadas);  // Log para depuração
     var cards = document.querySelectorAll('.card');
     cards.forEach(card => {
-        var linhaProduto = card.querySelector('.product-line').textContent.replace('Linha: ', '');
+        var linhaProduto = card.querySelector('.product-line').textContent.replace('Linha: ', '').trim();  // Adicionado trim para remover espaços em branco
+        console.log("Linha do Produto: ", linhaProduto);  // Log para depuração
         if (linhasSelecionadas.includes(linhaProduto)) {
-            card.style.display = 'block';  // Mostrar o card se a linha estiver selecionada
+            card.style.display = 'block';
         } else {
-            card.style.display = 'none';  // Esconder o card se a linha não estiver selecionada
+            card.style.display = 'none';
         }
     });
-    fecharModalFiltrar();  // Fechar o modal após aplicar o filtro
+    fecharModalFiltrar();
 }
+
 
 
        // Suponha que esta função seja chamada após os produtos serem renderizados
