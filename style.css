@@ -103,6 +103,8 @@
 }
 
 .modal-content {
+    max-height: 80vh;  /* Altura máxima de 80% da altura da viewport */
+    overflow-y: auto;  /* Habilitar rolagem vertical automática quando necessário */
     background-color: #fefefe;
     margin: 5% auto;
     padding: 20px;
