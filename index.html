@@ -307,7 +307,53 @@ function fecharModalFiltrar() {
     modal.classList.remove('show');
 }
 
+Papa.parse('https://docs.google.com/spreadsheets/d/e/2PACX-1vTGy-7_SfKpf4b6HpIL2-f6JNugN8VPQPT_qfQb0gjoTn4qvh3Vyupbr4aVJcdmn1Sma3zlSYJQ0W_z/pub?output=csv', {
+    download: true,
+    header: true,
+    complete: function(results) {
+        var data = results.data;
 
+        // Organizando as informações das linhas
+        var infoLinhas = {};
+        data.forEach(item => {
+            if(item.PASSO_A_PASSO && !infoLinhas[item.PASSO_A_PASSO]) {
+                infoLinhas[item.PASSO_A_PASSO] = item.DESCRICAO_LINHA;  // Supondo que a coluna ao lado de PASSO_A_PASSO seja DESCRICAO_LINHA
+            }
+        });
+
+        renderizarLinhasEProdutos(infoLinhas, data);
+    }
+});
+
+function renderizarLinhasEProdutos(infoLinhas, data) {
+    var productsContainer = document.getElementById('produtos');
+    var linhaAtual = '';
+    
+    data.forEach((item, index) => {
+        if(linhaAtual !== item.PASSO_A_PASSO) {
+            linhaAtual = item.PASSO_A_PASSO;
+            var headerLinha = `
+                <div class="header-linha">
+                    <h2>${linhaAtual} <span class="saiba-mais" onclick="abrirModalLinha('${linhaAtual}', '${infoLinhas[linhaAtual]}')">Saiba mais</span></h2>
+                </div>
+            `;
+            productsContainer.innerHTML += headerLinha;
+        }
+        
+        var productCard = `
+            <div class="card">
+                ... (o restante do seu código para renderizar o card do produto) ...
+            </div>
+        `;
+        productsContainer.innerHTML += productCard;
+    });
+}
+function abrirModalLinha(linha, descricao) {
+    var modal = document.getElementById("myModal");
+    var descricaoProduto = document.getElementById("descricaoProduto");
+    descricaoProduto.innerText = `Linha: ${linha}\nDescrição: ${descricao}`;
+    modal.classList.add('show');
+}
 
        
     </script>
