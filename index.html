@@ -67,6 +67,13 @@
         </div>
     </div>
 
+    <div id="modalInfoLinha" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="fecharModalInfoLinha()">&times;</span>
+        <p id="descricaoLinha"></p>
+    </div>
+</div>
+
 
     
    <script type="text/javascript">
@@ -228,20 +235,38 @@ Papa.parse('https://docs.google.com/spreadsheets/d/e/2PACX-1vTGy-7_SfKpf4b6HpIL2
     download: true,
     header: true,
     complete: function(results) {
+        var informacoesLinhas = {}; // objeto para armazenar as informações das linhas
         var data = results.data;
-        mensagensCarrinho = data.map(item => item.MSG_CARRINHO).filter(mensagem => mensagem && mensagem.trim());  // Filtrar mensagens vazias                    
+        mensagensCarrinho = data.map(item => item.MSG_CARRINHO).filter(mensagem => mensagem && mensagem.trim());  // Filtrar mensagens vazias
         var productsContainer = document.getElementById('produtos');
         for (var i = 0; i < data.length; i++) {
+            var linha = data[i].LINHA;
+            var passoAPasso = data[i].PASSO_A_PASSO;
+            
+            // Armazene a informação da linha
+            if (passoAPasso) {
+                informacoesLinhas[linha] = passoAPasso;
+            }
+            
+            // Verificar se é um novo grupo de linha e, em caso afirmativo, adicionar um cabeçalho
+            if (i === 0 || data[i].LINHA !== data[i - 1].LINHA) {
+                productsContainer.innerHTML += `
+                    <div class="linha-separadora">
+                        LINHA ${linha}
+                        <span class="saiba-mais" onclick="abrirModalInfoLinha('${linha}')">Saiba mais</span>
+                    </div>`;
+            }
+            
             var descricaoEscapada = encodeURIComponent(data[i].DESCRIÇÃO);
             var productCard = `
-    <div class="card">
-        <img src="${data[i].IMAGEM}" alt="${data[i].PRODUTOS}">
-        <h5 class="card-title">${data[i].PRODUTOS}</h5>
-         <button class="btn-info" onclick="abrirModal('${encodeURIComponent(data[i].DESCRIÇÃO)}')">Mais Sobre</button>
-        <p class="product-line">Linha: ${data[i].LINHA}</p>
-        <p class="card-text">Preço ${data[i].PREÇO}</p>
-        <button class="btn" onclick="adicionarAoCarrinho('${data[i].PRODUTOS}', '${data[i].PREÇO}')">Colocar no Carrinho</button>
-    </div>`;
+                <div class="card">
+                    <img src="${data[i].IMAGEM}" alt="${data[i].PRODUTOS}">
+                    <h5 class="card-title">${data[i].PRODUTOS}</h5>
+                    <button class="btn-info" onclick="abrirModal('${encodeURIComponent(data[i].DESCRIÇÃO)}')">Mais Sobre</button>
+                    <p class="product-line">Linha: ${data[i].LINHA}</p>
+                    <p class="card-text">Preço ${data[i].PREÇO}</p>
+                    <button class="btn" onclick="adicionarAoCarrinho('${data[i].PRODUTOS}', '${data[i].PREÇO}')">Colocar no Carrinho</button>
+                </div>`;
             productsContainer.innerHTML += productCard;
         }
         atualizarOpcoesFiltragem();  // Chame a função aqui
@@ -304,6 +329,18 @@ function produtosCarregados() {
 
 function fecharModalFiltrar() {
     var modal = document.getElementById("modalFiltrar");
+    modal.classList.remove('show');
+}
+
+       function abrirModalInfoLinha(linha) {
+    var modal = document.getElementById("modalInfoLinha");
+    var descricaoLinha = document.getElementById("descricaoLinha");
+    descricaoLinha.innerText = informacoesLinhas[linha] || "Informações não disponíveis";
+    modal.classList.add('show');
+}
+
+function fecharModalInfoLinha() {
+    var modal = document.getElementById("modalInfoLinha");
     modal.classList.remove('show');
 }
 
