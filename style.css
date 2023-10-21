@@ -106,7 +106,7 @@
     max-height: 80vh;  /* Altura máxima de 80% da altura da viewport */
     overflow-y: auto;  /* Habilitar rolagem vertical automática quando necessário */
     background-color: #fefefe;
-    margin: 5% auto;
+    margin: -5% 5%;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
