@@ -236,7 +236,7 @@ Papa.parse('https://docs.google.com/spreadsheets/d/e/2PACX-1vTGy-7_SfKpf4b6HpIL2
     download: true,
     header: true,
     complete: function(results) {
-        var informacoesLinhas = {}; // objeto para armazenar as informações das linhas
+       
         var data = results.data;
         mensagensCarrinho = data.map(item => item.MSG_CARRINHO).filter(mensagem => mensagem && mensagem.trim());  // Filtrar mensagens vazias
         var productsContainer = document.getElementById('produtos');
