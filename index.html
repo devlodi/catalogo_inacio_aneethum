@@ -228,6 +228,7 @@ function mostrarPopup(mensagem) {
 }
 
 
+var informacoesLinhas = {}; 
 
 
 // ... (o código para carregar os produtos da planilha) ...
@@ -332,12 +333,13 @@ function fecharModalFiltrar() {
     modal.classList.remove('show');
 }
 
-       function abrirModalInfoLinha(linha) {
+function abrirModalInfoLinha(linha) {
+    // Agora informacoesLinhas deve ser acessível aqui
     var modal = document.getElementById("modalInfoLinha");
     var descricaoLinha = document.getElementById("descricaoLinha");
     descricaoLinha.innerText = informacoesLinhas[linha] || "Informações não disponíveis";
     modal.classList.add('show');
-}
+
 
 function fecharModalInfoLinha() {
     var modal = document.getElementById("modalInfoLinha");
