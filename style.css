@@ -217,6 +217,9 @@
 }
 
 .linha-separadora {
+    width: 80%;  /* Define uma largura */
+    margin-left: auto;  /* Centraliza horizontalmente */
+    margin-right: auto;  /* Centraliza horizontalmente */
     font-size: 1.5em;
     margin-top: 20px;
     margin-bottom: 20px;
