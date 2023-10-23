@@ -88,7 +88,7 @@
     shadow: 0 4px 8px rgba(0,0,0,0.2); /* Adicionado para sombra */
     }
 .modal {
-    display: none;  /* Mantido para compatibilidade com seu código JS */
+    display: none;
     position: fixed;
     z-index: 1001;
     left: 0;
@@ -98,39 +98,21 @@
     overflow: auto;
     background-color: rgba(0,0,0,0.4);
     padding-top: 60px;
+    transition: opacity 0.3s ease-in-out;
     opacity: 0;
-    visibility: hidden;
-    transform: translateY(-100%); /* Inicialmente fora da tela */
-    transition: all 0.3s ease-in-out; /* Transição suave para todos os atributos */
-    opacity: 0; /* Inicialmente transparente */
-    visibility: hidden; /* Inicialmente oculto */
-}
-
-.modal.show {
-    display: block;  /* Mantido para compatibilidade com seu código JS */
-    opacity: 1;
-    visibility: visible;
-     transform: translateY(0); /* Desliza para a posição original */
-    opacity: 1; /* Torna-se totalmente opaco */
-    visibility: visible; /* Torna-se visível */
 }
 
 .modal-content {
-    background-color: #f4f4f4;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    text-align: center;
-    max-height: 80vh;
-    overflow-y: auto;
+    max-height: 80vh;  /* Altura máxima de 80% da altura da viewport */
+    overflow-y: auto;  /* Habilitar rolagem vertical automática quando necessário */
+    background-color: #fefefe;
     margin: -5% 5%;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border-radius: 8px; /* Adicionado para bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Adicionado para sombra */
     padding-bottom: 40px;
-    transition: all 0.3s ease;  /* Adicionado para transições suaves */
 }
 
 .close {
@@ -138,7 +120,6 @@
     float: right;
     font-size: 28px;
     font-weight: bold;
-    cursor: pointer;  /* Adicionado para indicar interatividade */
 }
 
 .close:hover,
@@ -148,23 +129,10 @@
     cursor: pointer;
 }
 
-.btn-modal {
-    background-color: #007BFF;
-    border: none;
-    border-radius: 4px;
-    color: white;
-    cursor: pointer;
-    padding: 10px 20px;
-    margin: 5px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    transition: background-color 0.3s ease;  /* Adicionado para uma transição suave */
-}
-
-.btn-modal:hover {
-    background-color: #0056b3;  /* Cor mais escura para o hover */
+/* CSS adicionado para mostrar o modal */
+.modal.show {
+    display: block;
+    opacity: 1;
 }
 
 .product-line {
