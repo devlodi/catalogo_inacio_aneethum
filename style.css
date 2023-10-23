@@ -330,13 +330,13 @@
 }
 
 .nome-linha, .saiba-mais {
-    display: inline-block;  /* Alterado para inline-block para que fiquem na mesma linha */
-    vertical-align: middle;  /* Alinha verticalmente */
+    display: block;  /* Alterado para block para que ocupem a linha inteira */
+    text-align: center; /* Centraliza o texto */
 }
 
+
 .saiba-mais {
-    margin-top: 8px;
-    margin-left: 10px;  /* Espaçamento à esquerda */
+    margin: 8px 25% 5px 25%;
     padding: 4px 8px;  /* Espaçamento interno */
     border-radius: 4px;  /* Borda arredondada */
     background-color: rgba(255, 255, 255, 0.3);  /* Cor de fundo semi-transparente */
@@ -348,3 +348,4 @@
 .saiba-mais:hover {
     background-color: rgba(255, 255, 255, 0.5);  /* Cor de fundo mais clara no hover */
 }
+
