@@ -78,14 +78,23 @@
 
     #header.ativo #detalhesCarrinho {
         display: block;
-    }
+.foto-inacio {
+    border-radius: 50%;  /* Faz a imagem ficar redonda */
+    width: 80px;        /* Define a largura */
+    height: 80px;       /* Define a altura */
+    object-fit: cover;   /* Certifica que a imagem irá cobrir toda a área */
+    margin-right: 10px;  /* Espaçamento à direita */
+}
  .instrucoes {
+     
+     display: flex;        /* Ativa o flexbox */
+    align-items: center;  /* Centraliza verticalmente */
         background-color: #e0f7fa;
-        padding: 20px;
+        padding: 10px;
         margin-bottom: 20px;
         border-radius: 8px;
         font-size: 1em;
-    shadow: 0 4px 8px rgba(0,0,0,0.2); /* Adicionado para sombra */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Adicionado para sombra */
     }
 .modal {
     display: none;
