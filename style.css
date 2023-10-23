@@ -86,9 +86,9 @@
     margin-right: 10px;  /* Espaçamento à direita */
 }
  .instrucoes {
-     
-     display: flex;        /* Ativa o flexbox */
-    align-items: center;  /* Centraliza verticalmente */
+     margin-top: 10%;
+        display: flex;        /* Ativa o flexbox */
+        align-items: center;  /* Centraliza verticalmente */
         background-color: #e0f7fa;
         padding: 10px;
         margin-bottom: 20px;
