@@ -60,16 +60,18 @@
     
 
 <!-- Modal para Filtragem de Linhas -->
-    <div id="modalFiltrar" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="fecharModalFiltrar()">&times;</span>
-            <p>Quer ver quais linhas ?</p>
-            <div id="opcoesFiltragem">
-                <!-- As opções de filtragem serão inseridas aqui pelo JavaScript -->
-            </div>
-             <button class="btn-filtrar" onclick="aplicarFiltro()">FILTRAR</button>
+<div id="modalFiltrar" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="fecharModalFiltrar()">&times;</span>
+        <p>Quer ver quais linhas ?</p>
+        <div id="opcoesFiltragem">
+            <!-- As opções de filtragem serão inseridas aqui pelo JavaScript -->
         </div>
+        <button class="btn-filtrar" onclick="aplicarFiltro()">FILTRAR</button>
+        <button class="btn" onclick="desmarcarTodas()">DESMARCAR TODAS</button> <!-- Botão adicionado aqui -->
     </div>
+</div>
+
 
     <div id="modalInfoLinha" class="modal">
     <div class="modal-content">
@@ -368,6 +370,11 @@ function aplicarFiltro() {
 
     fecharModalFiltrar();
     window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function desmarcarTodas() {
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = false;
+    });
 }
 
 
