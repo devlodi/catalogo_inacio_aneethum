@@ -74,6 +74,18 @@
     </div>
 </div>
 
+<!-- Modal para verificar carrinho -->
+<div id="verificarCarrinhoModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="fecharModalVerificarCarrinho()">&times;</span>
+    <h2>Hmm... parece que você tem algumas coisas no seu carrinho.</h2>
+    <p>O que você quer fazer?</p>
+    <button onclick="zerarCarrinho()">Zerar o carrinho</button>
+    <button onclick="manterCarrinho()">Manter</button>
+  </div>
+</div>
+    
+
 <div class="linha-separadora">
     <div class="nome-linha">LINHA ${linha}</div>
     <div class="saiba-mais" onclick="abrirModalInfoLinha('${linha}')">Saiba mais</div>
@@ -95,12 +107,16 @@ function carregarCarrinho() {
         carrinho = JSON.parse(carrinhoSalvo);
         total = carrinho.reduce((soma, item) => soma + item.preco, 0);
     } else {
-        // Inicializa as variáveis se não houver nada no Local Storage
         carrinho = [];
         total = 0;
     }
-    // Chame atualizarCarrinho após carregar o carrinho do Local Storage
+    
     atualizarCarrinho();
+
+    // Verificar se o carrinho tem itens e abrir o modal, caso positivo
+    if (carrinho.length > 0) {
+        abrirModalVerificarCarrinho();
+    }
 }
        
 
@@ -378,6 +394,21 @@ function fecharModalInfoLinha() {
     modal.classList.remove('show');
 }
 
+function abrirModalVerificarCarrinho() {
+    const modal = document.getElementById('verificarCarrinhoModal');
+    modal.classList.add('show');
+}
+
+function fecharModalVerificarCarrinho() {
+    const modal = document.getElementById('verificarCarrinhoModal');
+    modal.classList.remove('show');
+}
+
+function manterCarrinho() {
+    // Sua lógica para manter os itens no carrinho aqui, se necessário
+    fecharModalVerificarCarrinho();
+}
+       
 
 
        
