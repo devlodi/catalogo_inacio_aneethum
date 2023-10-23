@@ -217,30 +217,46 @@
 }
 
 .linha-separadora {
+    
     width: 80%;  /* Define uma largura */
     margin-left: auto;  /* Centraliza horizontalmente */
     margin-right: auto;  /* Centraliza horizontalmente */
     font-size: 1.5em;
     margin-top: 20px;
     margin-bottom: 20px;
-    padding: 15px;  
-    border-radius: 10px;  
-    text-align: center;  
-    background: linear-gradient(to bottom, #f9f9f9, #e0e0e0);  /* Gradiente de cor para efeito 3D */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),  /* Sombra externa */
-                inset 0 4px 8px rgba(255, 255, 255, 0.5),  /* Sombra interna na parte superior */
-                inset 0 -4px 8px rgba(0, 0, 0, 0.1);  /* Sombra interna na parte inferior */
+    padding: 5px;
+    border-radius: 12px;  /* Aumenta o raio da borda para um visual mais arredondado */
+    text-align: center;
+    background: linear-gradient(135deg, #ffbc00, #e84b14);  /* Gradiente diagonal */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2),  /* Sombra externa mais suave */
+                0 6px 20px rgba(0, 0, 0, 0.19);  /* Sombra externa mais dispersa */
+    color: #fff;  /* Cor do texto branco */
+    transition: all 0.3s ease;  /* Transição suave para hover */
+}
+
+.linha-separadora:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3),  /* Sombra externa mais forte no hover */
+                0 6px 20px rgba(0, 0, 0, 0.23);  /* Sombra externa mais dispersa no hover */
 }
 
 .nome-linha, .saiba-mais {
-    display: block;
+    display: inline-block;  /* Alterado para inline-block para que fiquem na mesma linha */
+    vertical-align: middle;  /* Alinha verticalmente */
 }
-
 
 .saiba-mais {
+    margin-top: 8px;
+    margin-left: 10px;  /* Espaçamento à esquerda */
+    padding: 4px 8px;  /* Espaçamento interno */
+    border-radius: 4px;  /* Borda arredondada */
+    background-color: rgba(255, 255, 255, 0.3);  /* Cor de fundo semi-transparente */
     cursor: pointer;
-    color: blue;
+    color: #fff;  /* Cor do texto branco */
+    transition: all 0.3s ease;  /* Transição suave para hover */
 }
 
+.saiba-mais:hover {
+    background-color: rgba(255, 255, 255, 0.5);  /* Cor de fundo mais clara no hover */
+}
 
 
