@@ -100,15 +100,19 @@
     padding-top: 60px;
     opacity: 0;
     visibility: hidden;
-    transform: scale(0.7);  /* Adicionado para efeito de "emergir" */
-    transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease;  /* Atualizado para incluir transform */
+    transform: translateY(-100%); /* Inicialmente fora da tela */
+    transition: all 0.3s ease-in-out; /* Transição suave para todos os atributos */
+    opacity: 0; /* Inicialmente transparente */
+    visibility: hidden; /* Inicialmente oculto */
 }
 
 .modal.show {
     display: block;  /* Mantido para compatibilidade com seu código JS */
     opacity: 1;
     visibility: visible;
-    transform: scale(1);  /* Adicionado para efeito de "emergir" */
+     transform: translateY(0); /* Desliza para a posição original */
+    opacity: 1; /* Torna-se totalmente opaco */
+    visibility: visible; /* Torna-se visível */
 }
 
 .modal-content {
