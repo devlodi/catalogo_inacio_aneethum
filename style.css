@@ -5,6 +5,18 @@
         margin-top: 100px; /* Espaço para o cabeçalho */
     }
 
+.btn-desmarcar {
+    margin-top: 5px;
+    background-color: red;
+    color: white;
+    padding: 8px 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+
     #produtos {
         display: flex;
         flex-wrap: wrap;
