@@ -107,6 +107,18 @@
     
    <script type="text/javascript">
 
+// Funções para mostrar e esconder a tela de loading
+function mostrarTelaLoading() {
+    document.getElementById('loadingScreen').style.display = 'flex';
+}
+
+function esconderTelaLoading() {
+    document.getElementById('loadingScreen').style.display = 'none';
+}
+
+mostrarTelaLoading();       
+       
+
 var carrinho;
 var total;
 
@@ -129,6 +141,8 @@ function carregarCarrinho() {
         abrirModalVerificarCarrinho();
     }
 }
+
+       
        
 
         function toggleCarrinho() {
@@ -277,11 +291,7 @@ var linhasUnicas = {};
 Papa.parse('https://docs.google.com/spreadsheets/d/e/2PACX-1vTGy-7_SfKpf4b6HpIL2-f6JNugN8VPQPT_qfQb0gjoTn4qvh3Vyupbr4aVJcdmn1Sma3zlSYJQ0W_z/pub?output=csv', {
     download: true,
     header: true,
-      beforeFirstChunk: function() {
-        mostrarTelaLoading();  // Mostrar a tela de loading antes de iniciar o parse
-    },
     complete: function(results) {
-        esconderTelaLoading(); 
        
         var data = results.data;
         mensagensCarrinho = data.map(item => item.MSG_CARRINHO).filter(mensagem => mensagem && mensagem.trim());
@@ -443,6 +453,7 @@ function esconderTelaLoading() {
     document.getElementById('loadingScreen').style.display = 'none';
 }
 
+       esconderTelaLoading();
        
     </script>
 
