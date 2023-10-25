@@ -90,6 +90,7 @@
     max-height: 400px;
     overflow-y: auto;
     display: none;
+    position: relative;
 }
 
 #detalhesCarrinho::-webkit-scrollbar {
@@ -110,6 +111,12 @@
 
 #detalhesCarrinho::-webkit-scrollbar-thumb:hover {
     background-color: #000;
+}
+
+
+
+#detalhesCarrinho .lista-itens {
+    /* Adicione estilos para a lista de itens conforme necessário */
 }
 
     #header.ativo #detalhesCarrinho {
