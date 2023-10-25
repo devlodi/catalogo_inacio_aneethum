@@ -215,10 +215,16 @@ function fecharModalDúvidas() {
 
        
 
-   function atualizarCarrinho() {
-    var detalhesCarrinho = document.getElementById('detalhesCarrinho');
-    var conteudoCarrinho = '';
+function atualizarCarrinho() {
+    // Pegando os elementos da página
+    var listaItensCarrinho = document.getElementById('listaItensCarrinho');
+    var totalCarrinho = document.getElementById('totalCarrinho');
+    var contador = document.getElementById('contador');
+
+    // Inicializando a variável que conterá a lista de itens
     var listaItens = '';
+
+    // Preenchendo a lista de itens
     carrinho.forEach((item, index) => {
         listaItens += `
             <p>
@@ -226,18 +232,12 @@ function fecharModalDúvidas() {
                 <span onclick="removerDoCarrinho(${index})" style="cursor:pointer;">&#128465;</span>
             </p>`;
     });
-   listaItens += `<p>Total: R$ ${total.toFixed(2)} <button class="btn-clear" onclick="zerarCarrinho()">Zerar Carrinho</button></p>`;
-       
-    conteudoCarrinho = `
-        <div>
-            ${listaItens}
-        </div>
-        <button class="btn" onclick="enviarPedido()">Mandar Pedido pelo WhatsApp</button><br>
-    `;
-    detalhesCarrinho.innerHTML = conteudoCarrinho;
-    document.getElementById('contador').innerText = carrinho.length;
-}
 
+    // Atualizando o HTML
+    listaItensCarrinho.innerHTML = listaItens;
+    totalCarrinho.innerText = `Total: R$ ${total.toFixed(2)}`;
+    contador.innerText = carrinho.length;
+}
 
 
 
