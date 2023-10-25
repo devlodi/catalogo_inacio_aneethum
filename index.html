@@ -208,9 +208,8 @@ function fecharModalDúvidas() {
 
        
 
-   function atualizarCarrinho() {
+function atualizarCarrinho() {
     var detalhesCarrinho = document.getElementById('detalhesCarrinho');
-    var conteudoCarrinho = '';
     var listaItens = '';
     carrinho.forEach((item, index) => {
         listaItens += `
@@ -219,15 +218,20 @@ function fecharModalDúvidas() {
                 <span onclick="removerDoCarrinho(${index})" style="cursor:pointer;">&#128465;</span>
             </p>`;
     });
-   listaItens += `<p>Total: R$ ${total.toFixed(2)} <button class="btn-clear" onclick="zerarCarrinho()">Zerar Carrinho</button></p>`;
-       
-    conteudoCarrinho = `
-        <div>
-            ${listaItens}
-        </div>
+    
+    var footerCarrinho = `
+        <p>Total: R$ ${total.toFixed(2)} <button class="btn-clear" onclick="zerarCarrinho()">Zerar Carrinho</button></p>
         <button class="btn" onclick="enviarPedido()">Mandar Pedido pelo WhatsApp</button><br>
     `;
-    detalhesCarrinho.innerHTML = conteudoCarrinho;
+
+    detalhesCarrinho.innerHTML = `
+        <div class="lista-itens">
+            ${listaItens}
+        </div>
+        <div class="footer-carrinho">
+            ${footerCarrinho}
+        </div>
+    `;
     document.getElementById('contador').innerText = carrinho.length;
 }
 
