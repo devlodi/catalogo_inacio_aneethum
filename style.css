@@ -45,6 +45,12 @@
   100% { transform: rotate(360deg); }
 }
 
+.loading-screen__text {
+  color: white;
+  margin-top: 20px;
+  font-size: 18px;
+}
+
     #produtos {
         display: flex;
         flex-wrap: wrap;
