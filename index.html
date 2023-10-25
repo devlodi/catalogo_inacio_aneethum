@@ -16,6 +16,11 @@
  
 <body>
 
+     <div id="loading-screen" class="loading-screen">
+    <div class="loader"></div>
+    <p>Só um pouquinho, estou buscando os produtos para você</p>
+  </div>
+
     
      <div id="header">
         <button class="btn" onclick="toggleCarrinho()">🛒Carrinho<span id="contador">0</span></button>
@@ -101,12 +106,23 @@
     
    <script type="text/javascript">     
 
+       // Função para mostrar a tela de carregamento
+function mostrarTelaLoading() {
+    document.getElementById('loading-screen').style.display = 'flex';  // Certifique-se que o ID corresponde ao seu HTML
+}
+
+// Função para esconder a tela de carregamento
+function esconderTelaLoading() {
+    document.getElementById('loading-screen').style.display = 'none';  // Certifique-se que o ID corresponde ao seu HTML
+}
+
 var carrinho;
 var total;
 
 carregarCarrinho();  // Mova esta linha para cima, antes das inicializações das variáveis
 
 function carregarCarrinho() {
+     mostrarTelaLoading();
     var carrinhoSalvo = localStorage.getItem('carrinho');
     if (carrinhoSalvo) {
         carrinho = JSON.parse(carrinhoSalvo);
@@ -122,6 +138,7 @@ function carregarCarrinho() {
     if (carrinho.length > 0) {
         abrirModalVerificarCarrinho();
     }
+     esconderTelaLoading();
 }
 
        
