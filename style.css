@@ -23,7 +23,7 @@
   height: 100%;
   top: 0;
   left: 0;
-  background: linear-gradient(45deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7));
+  background: linear-gradient(90deg, #000000, #333333); /* Mudança aqui */
   z-index: 9999;
   display: flex;
   align-items: center;
