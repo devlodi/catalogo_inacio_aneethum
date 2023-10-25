@@ -106,15 +106,11 @@
     
    <script type="text/javascript">     
 
-       // Função para mostrar a tela de carregamento
-function mostrarTelaLoading() {
-    document.getElementById('loading-screen').style.display = 'flex';  // Certifique-se que o ID corresponde ao seu HTML
-}
 
 // Função para esconder a tela de carregamento
-function esconderTelaLoading() {
+
     document.getElementById('loading-screen').style.display = 'none';  // Certifique-se que o ID corresponde ao seu HTML
-}
+
 
 var carrinho;
 var total;
@@ -122,7 +118,6 @@ var total;
 carregarCarrinho();  // Mova esta linha para cima, antes das inicializações das variáveis
 
 function carregarCarrinho() {
-     mostrarTelaLoading();
     var carrinhoSalvo = localStorage.getItem('carrinho');
     if (carrinhoSalvo) {
         carrinho = JSON.parse(carrinhoSalvo);
@@ -138,7 +133,6 @@ function carregarCarrinho() {
     if (carrinho.length > 0) {
         abrirModalVerificarCarrinho();
     }
-     esconderTelaLoading();
 }
 
        
@@ -325,6 +319,7 @@ Papa.parse('https://docs.google.com/spreadsheets/d/e/2PACX-1vTGy-7_SfKpf4b6HpIL2
                     <button class="btn" onclick="adicionarAoCarrinho('${data[i].PRODUTOS}', '${data[i].PREÇO}')">Colocar no Carrinho</button>
                 </div>`;
             productsContainer.innerHTML += productCard;
+            document.getElementById('loading-screen').style.display = 'none';
         }
         
         // Agora, linhasUnicas contém uma entrada única para cada linha, juntamente com seu passo a passo
