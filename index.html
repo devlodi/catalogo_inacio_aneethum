@@ -24,8 +24,15 @@
         <button class="btn" onclick="abrirModalDúvidas()">Dúvidas ?</button>
         <button class="btn" onclick="abrirModalFiltrar()">Filtrar Linhas</button>
         <div id="detalhesCarrinho">
-            <!-- Os itens do carrinho e o total serão inseridos aqui pelo JavaScript -->
-        </div>
+    <div id="listaItensCarrinho">
+        <!-- Os itens do carrinho serão inseridos aqui pelo JavaScript -->
+    </div>
+    <div id="rodapeCarrinho">
+        <p id="totalCarrinho">Total: R$ 0.00</p>
+        <button class="btn-clear" onclick="zerarCarrinho()">Zerar Carrinho</button>
+        <button class="btn" onclick="enviarPedido()">Mandar Pedido pelo WhatsApp</button>
+    </div>
+</div>
     </div>
 
 <div class="instrucoes">
