@@ -342,17 +342,33 @@
 }
  
 .popup {
-    display: none;
-    position: fixed;
-    bottom: 60px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #fdb6ff;
-    color: black;
-    padding: 10px;
-    border-radius: 8px;
-    z-index: 1002;
+  width: 220px;
+  display: none;  /* Inicialmente escondido */
+  position: fixed;
+  bottom: 120px;  /* Posição final */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fdb6ff;
+  color: black;
+  padding: 10px;
+  border-radius: 8px;
+  z-index: 1002;
+  box-shadow: 3px 3px 5px 0px #f583f0;
+  opacity: 0;  /* Inicialmente transparente */
+  animation: fadeInSlideUp 0.5s forwards;  /* Nome da animação, duração e direção */
 }
+
+@keyframes fadeInSlideUp {
+  0% {
+    opacity: 0;  /* Inicialmente transparente */
+    bottom: 100px;  /* Posição inicial */
+  }
+  100% {
+    opacity: 1;  /* Totalmente opaco */
+    bottom: 120px;  /* Posição final */
+  }
+}
+
 
 .popup.show {
     display: block;
