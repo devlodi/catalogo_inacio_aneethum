@@ -259,9 +259,15 @@ function mostrarPopup(mensagem) {
     var popup = document.getElementById('popup');
     var popupText = document.getElementById('popupText');
     popupText.innerText = mensagem;
+
+    // Remove a classe 'show' e força o reflow para reiniciar a animação
+    popup.classList.remove('show');
+    void popup.offsetWidth;  // forçar reflow
+
+    // Adiciona a classe 'show' para iniciar a animação
     popup.classList.add('show');
 
-    // Ocultar o pop-up após 3 segundos
+    // Ocultar o pop-up após 5 segundos
     timeoutId = setTimeout(function() {
         popup.classList.remove('show');
     }, 5000);
