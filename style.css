@@ -462,30 +462,30 @@
 
 
 .modal-confirmacao-zerar {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 2; /* Higher than other elements */
+  display: none; /* Escondido por padrão */
+  position: fixed; /* Fica fixo na tela, sobre outros conteúdos */
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  width: 100%; /* Largura total */
+  height: 100%; /* Altura total */
+  background-color: rgba(0,0,0,0.5); /* Fundo preto com opacidade */
+  z-index: 1005; /* Alto z-index para ficar no topo */
 }
 
 .modal-content-zerar {
+  position: relative;
   background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
+  margin: 15% auto; /* 15% do topo e centralizado horizontalmente */
   padding: 20px;
   border: 1px solid #888;
-  width: 50%; /* Could be more or less, depending on screen size */
+  width: 80%; /* Largura do conteúdo do modal */
+  z-index: 1005; /* z-index ainda mais alto para ficar acima do fundo escuro */
 }
 
 .modal-footer-zerar {
-  padding: 10px 16px;
-  background-color: #fefefe;
-  text-align: right;
+  text-align: center; /* Centraliza os botões no rodapé do modal */
 }
+
 
 .btn-confirmar-zerar, .btn-cancelar-zerar {
   padding: 10px 20px;
