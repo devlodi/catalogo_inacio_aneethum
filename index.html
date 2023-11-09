@@ -102,6 +102,17 @@
     <div class="saiba-mais" onclick="abrirModalInfoLinha('${linha}')">Saiba mais</div>
 </div>
 
+<!-- Modal de Confirmação de Zerar Carrinho -->
+<div id="modalConfirmacaoZerar" class="modal-confirmacao-zerar">
+  <div class="modal-content-zerar">
+    <h4>Confirmar Ação</h4>
+    <p>Tem certeza que deseja zerar seu carrinho?</p>
+  </div>
+  <div class="modal-footer-zerar">
+    <a href="#!" class="btn-confirmar-zerar" onclick="confirmarZerarCarrinho()">Sim</a>
+    <a href="#!" class="btn-cancelar-zerar" onclick="fecharModalZerar()">Não</a>
+  </div>
+</div>
 
 
     
@@ -170,19 +181,7 @@ function removerDoCarrinho(index) {
 }
 
 function zerarCarrinho() {
-    // Mostra uma caixa de diálogo de confirmação
-    var confirmacao = confirm("Tem certeza que deseja zerar seu carrinho?");
-    if (confirmacao) {
-        // Se o usuário confirmou, esvazie o carrinho e atualize tudo
-        carrinho = [];  // Esvazie o array carrinho
-        total = 0;  // Zere a variável total
-        localStorage.setItem('carrinho', JSON.stringify(carrinho));  // Atualize o carrinho no Local Storage
-        atualizarCarrinho();  // Atualize o carrinho na página
-        fecharModalVerificarCarrinho();
-    } else {
-        // Se o usuário cancelou, apenas feche a modal
-        fecharModalVerificarCarrinho();
-    }
+    mostrarModalZerar(); // Chama a função que mostra o modal
 }
 
        
@@ -448,6 +447,23 @@ function manterCarrinho() {
     fecharModalVerificarCarrinho();
 }
     
+function mostrarModalZerar() {
+  document.getElementById('modalConfirmacaoZerar').style.display = 'block';
+}
+
+function fecharModalZerar() {
+  document.getElementById('modalConfirmacaoZerar').style.display = 'none';
+}
+
+function confirmarZerarCarrinho() {
+  // Aqui você coloca a lógica atual que está dentro da sua confirmação atual
+  carrinho = [];
+  total = 0;
+  localStorage.setItem('carrinho', JSON.stringify(carrinho));
+  atualizarCarrinho();
+  fecharModalVerificarCarrinho();
+  fecharModalZerar(); // Fechar o modal de confirmação também
+}
 
        
     </script>
