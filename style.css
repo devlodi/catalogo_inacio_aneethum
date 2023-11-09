@@ -462,6 +462,7 @@
 
 
 .modal-confirmacao-zerar {
+  
   display: none; /* Escondido por padrão */
   position: fixed; /* Fica fixo na tela, sobre outros conteúdos */
   left: 0;
@@ -473,6 +474,7 @@
 }
 
 .modal-content-zerar {
+  border-radius:15px;
   position: relative;
   background-color: #fefefe;
   margin: 15% auto; /* 15% do topo e centralizado horizontalmente */
@@ -483,6 +485,7 @@
 }
 
 .modal-footer-zerar {
+  margin-top:25px;
   text-align: center; /* Centraliza os botões no rodapé do modal */
 }
 
@@ -495,12 +498,15 @@
 }
 
 .btn-confirmar-zerar {
+  border-radius:15px;
   background-color: #4CAF50; /* Green */
   color: white;
 }
 
 .btn-cancelar-zerar {
+  border-radius:15px;
   background-color: #f44336; /* Red */
   color: white;
 }
+
 
