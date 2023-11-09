@@ -170,11 +170,19 @@ function removerDoCarrinho(index) {
 }
 
 function zerarCarrinho() {
-    carrinho = [];  // Esvazie o array carrinho
-    total = 0;  // Zere a variável total
-    localStorage.setItem('carrinho', JSON.stringify(carrinho));  // Atualize o carrinho no Local Storage
-    atualizarCarrinho();  // Atualize o carrinho na página
-    fecharModalVerificarCarrinho();
+    // Mostra uma caixa de diálogo de confirmação
+    var confirmacao = confirm("Tem certeza que deseja zerar seu carrinho?");
+    if (confirmacao) {
+        // Se o usuário confirmou, esvazie o carrinho e atualize tudo
+        carrinho = [];  // Esvazie o array carrinho
+        total = 0;  // Zere a variável total
+        localStorage.setItem('carrinho', JSON.stringify(carrinho));  // Atualize o carrinho no Local Storage
+        atualizarCarrinho();  // Atualize o carrinho na página
+        fecharModalVerificarCarrinho();
+    } else {
+        // Se o usuário cancelou, apenas feche a modal
+        fecharModalVerificarCarrinho();
+    }
 }
 
        
