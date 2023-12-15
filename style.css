@@ -542,6 +542,9 @@
     background-color: rgba(0,0,0,0.6);
     padding: 10px;
     border-radius: 10px;
+    font-size: 18px; /* Tamanho maior para dispositivos móveis */
+    padding: 15px; /* Mais espaço interno */
+    margin-top: 30px; /* Mais espaço acima do texto */
 }
 
 .btn-entendi {
@@ -552,6 +555,21 @@
     border: none;
     cursor: pointer;
     border-radius: 5px;
+    margin-top: 30px; /* Mais espaço acima do botão */
+    padding: 15px 30px; /* Botão maior para facilitar a interação */
+}
+
+@media (max-width: 768px) {
+    .modal-aviso-texto {
+        font-size: 18px;
+        padding: 15px;
+        margin-top: 30px;
+    }
+    .btn-entendi {
+        margin-top: 30px;
+        padding: 15px 30px;
+    }
+    /* Outros ajustes específicos para mobile */
 }
 
 
