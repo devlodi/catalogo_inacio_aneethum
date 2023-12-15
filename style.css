@@ -526,50 +526,31 @@
 
 .modal-aviso-content {
     position: relative;
-    background-color: #fefefe;
+    background-image: url('https://raw.githubusercontent.com/devlodi/catalogo_inacio_aneethun/main/imagens/natal.png');
+    background-size: cover;
     padding: 20px;
     border-radius: 10px;
+    width: 90%; /* Ajuste conforme necessário */
+    max-width: 400px; /* Ajuste conforme necessário */
     text-align: center;
 }
 
 .modal-aviso-texto {
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    z-index: 1002;
-    background-color: rgba(0,0,0,0.6);
-    padding: 10px;
+    color: white; /* Ou outra cor que destaque sobre a imagem */
+    font-size: 18px; /* Ajuste o tamanho conforme necessário */
+    padding: 20px; /* Ajuste o espaçamento conforme necessário */
     border-radius: 10px;
-    font-size: 18px; /* Tamanho maior para dispositivos móveis */
-    padding: 15px; /* Mais espaço interno */
-    margin-top: 30px; /* Mais espaço acima do texto */
+    background-color: rgba(0,0,0,0.6); /* Fundo semi-transparente para destaque */
 }
 
 .btn-entendi {
-    margin-top: 15px;
+    margin-top: 20px; /* Ajuste o espaçamento conforme necessário */
     padding: 10px 20px;
     background-color: #008CBA;
     color: white;
     border: none;
     cursor: pointer;
     border-radius: 5px;
-    margin-top: 30px; /* Mais espaço acima do botão */
-    padding: 15px 30px; /* Botão maior para facilitar a interação */
-}
-
-@media (max-width: 768px) {
-    .modal-aviso-texto {
-        font-size: 18px;
-        padding: 15px;
-        margin-top: 30px;
-    }
-    .btn-entendi {
-        margin-top: 30px;
-        padding: 15px 30px;
-    }
-    /* Outros ajustes específicos para mobile */
 }
 
 
